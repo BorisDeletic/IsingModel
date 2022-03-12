@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <algorithm>
 #include "simulation.h"
 
 using namespace std;
@@ -13,43 +14,98 @@ Simulation::Simulation(int n)
     lattice(n),
     n(n)
 {
-   lattice.randomize();
-   //engine.setTemperature(5);
-   //engine.setHField(10);
-}
-
-
-void Simulation::runSimulation(int timeSteps)
-{
-    lattice.spins[0][1] = -1;
-    lattice.spins[1][0] = -1;
-    lattice.spins[2][1] = -1;
-    lattice.spins[1][2] = -1;
-    Lattice nextLattice = engine.timeStep(lattice);
-
-    cout << lattice;
-
-    printf("next step\n");
-
-    cout << nextLattice;
 }
 
 
 
-void Simulation::timeToEquilibrium(int timeSteps)
+
+void Simulation::run(int timeSteps)
 {
-    Lattice oldLattice(n);
     for (int i = 0; i < timeSteps; i++) {
         Lattice nextLattice = engine.timeStep(lattice);
 
-        float eq = engine.measureLatticeChange(lattice, nextLattice);
+        float eq = engine.fractionSpinsFlipped(lattice, nextLattice);
 
-        printf("eq = %f, mag = %f\n", eq, lattice.magnetisation());
+        flips.push_back(eq);
+        magnetisations.push_back(lattice.magnetisation());
 
-        oldLattice = lattice;
+     //   printf("eq = %f, mag = %f\n", eq, lattice.magnetisation());
+
         lattice = nextLattice;
     }
-
-//    cout << oldLattice << endl;
-//    cout << lattice;
 }
+
+
+int Simulation::timeToEquilibrium() {
+/*
+ * Calculate the number of steps before flips stabilises -> equilibrium
+ * We consider flips stabilised when they does not fluctuate more than 1% from mean
+ * For window steps.
+ */
+    const int windowSize = 20;
+    const float fluctuationThreshold = 0.01;
+
+    for (int i = 0; i < flips.size() - windowSize; i++) {
+        auto start = flips.begin() + i;
+        auto end = flips.begin() + i + windowSize;
+
+        float meanFlips = reduce(start, end);
+        float maxFlips  = *max_element(start, end);
+        float minFlips  = *min_element(start, end);
+
+        if (
+                (maxFlips - meanFlips) / meanFlips < fluctuationThreshold &&
+                (meanFlips - minFlips) / meanFlips < fluctuationThreshold)
+        {
+            return i;
+        }
+    }
+
+    // equilibrium conditions not reached
+    return -1;
+
+}
+
+
+
+double Simulation::autoCovariance(int tau)
+{
+    double meanMagnetisation = reduce(magnetisations.begin(), magnetisations.end()) / magnetisations.size();
+
+    int t = magnetisations.size() - tau;
+    if (t / magnetisations.size() < 0.9)
+    {
+        std::cout << "Not averaging over long enough time\n";
+        return 0;
+    }
+
+    vector<double> covariance(t);
+
+    for (int i = 0; i < t; i++)
+    {
+        double magP = magnetisations[i] - meanMagnetisation;
+        double magP_tau = magnetisations[i + tau] - meanMagnetisation;
+
+        covariance[i] = magP * magP_tau;
+    }
+
+    double autoCov = reduce(covariance.begin(), covariance.end()) / t;
+
+    return autoCov;
+}
+
+
+vector<double> Simulation::autoCorrelations()
+{
+    double autoCov0 = autoCovariance(0);
+
+    vector<double> autoCor;
+
+    for (int tau = 0; tau < magnetisations.size(); tau++)
+    {
+        autoCor.push_back(autoCovariance(tau) / autoCov0);
+    }
+
+    return autoCor;
+}
+

@@ -1,20 +1,39 @@
 #include <iostream>
+#include <vector>
 #include "src\simulation.h"
 
+using namespace std;
 
-int main() {
-    std::cout << "Hello World" << std::endl;
+int main()
+{
 
+}
+
+
+void timeToEquilibrium()
+{
     Simulation sim(1000);
 
-    //sim.runSimulation(1);
-    sim.setTemperature(0.1);
+    sim.setTemperature(3);
+    sim.run(100);
 
-  //  sim.setHField(4);
-    sim.timeToEquilibrium(15);
+    int time = sim.timeToEquilibrium();
 
-    std::cout << "switch\n";
+    cout << "steps to eq = " << time << endl;
+}
 
-    sim.setHField(0);
-    sim.timeToEquilibrium(100);
+
+void autoCorrelation()
+{
+    Simulation sim(1000);
+
+    sim.setTemperature(3);
+    sim.run(100);
+
+    vector<double> autoCors = sim.autoCorrelations();
+
+    for (int i = 0; i < autoCors.size(); i++)
+    {
+        printf("autoCor %d = %f", i, autoCors[i]);
+    }
 }

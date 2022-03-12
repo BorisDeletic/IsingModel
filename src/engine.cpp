@@ -84,7 +84,7 @@ int Engine::flipSpin(int s0, vector<int> neighbours) {
 }
 
 
-float Engine::measureLatticeChange(Lattice &oldLattice, Lattice &newLattice) {
+float Engine::fractionSpinsFlipped(Lattice &oldLattice, Lattice &newLattice) {
     float spinsFlipped = 0;
     int n = oldLattice.spins.size();
 

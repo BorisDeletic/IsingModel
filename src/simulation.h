@@ -12,14 +12,21 @@ class Simulation {
 public:
     Simulation(int n);
 
-    void runSimulation(int timeSteps);
-    void timeToEquilibrium(int timeSteps);
+    void run(int timeSteps);
+
+    int timeToEquilibrium();
+    double autoCovariance(int tau);
+    vector<double> autoCorrelations();
 
     void setTemperature(float T) { engine.setTemperature(T); };
     void setHField(float H) { engine.setHField(H); };
+    void randomize(void) {lattice.randomize(); };
 private:
     Engine engine;
     Lattice lattice;
+
+    vector<double> magnetisations;
+    vector<double> flips;
 
     int n;
 };

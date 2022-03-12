@@ -17,7 +17,7 @@ public:
     void setTemperature(float temperature) {T = temperature; };
     void setHField(float field) {H = field; };
 
-    float measureLatticeChange(Lattice& oldLattice, Lattice& newLattice);
+    float fractionSpinsFlipped(Lattice& oldLattice, Lattice& newLattice);
 private:
     void calculateNewSpins(vector<vector<int>>& newSpins, vector<vector<int>>& oldSpins);
     int flipSpin(int s0, vector<int> neighbours);
