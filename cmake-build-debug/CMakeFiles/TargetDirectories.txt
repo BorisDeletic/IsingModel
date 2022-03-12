@@ -1,0 +1,3 @@
+C:/Users/boris/Documents/Programming/IsingModel/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/boris/Documents/Programming/IsingModel/cmake-build-debug/CMakeFiles/IsingModel.dir
+C:/Users/boris/Documents/Programming/IsingModel/cmake-build-debug/CMakeFiles/rebuild_cache.dir
