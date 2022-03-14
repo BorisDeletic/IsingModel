@@ -24,8 +24,8 @@ void Lattice::randomize() {
 
 
 
-float Lattice::magnetisation() {
-    float mag = 0;
+double Lattice::magnetisation() {
+    double mag = 0;
 
     for (int i = 0; i < n; i++)
     {
@@ -35,7 +35,7 @@ float Lattice::magnetisation() {
         }
     }
 
-    return mag / (n * n);
+    return mag;
 }
 
 

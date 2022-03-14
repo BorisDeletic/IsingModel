@@ -15,11 +15,12 @@ public:
     Lattice(int n);
 
     void randomize();
-    float magnetisation();
+    double magnetisation();
 
     vector<vector<int>> spins;
 
     friend ostream& operator << (ostream &o, const Lattice &l);
+
 private:
     int n;
 };
