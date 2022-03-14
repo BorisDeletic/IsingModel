@@ -15,7 +15,8 @@ public:
     Lattice(int n);
 
     void randomize();
-    float magnetisation();
+    double magnetisation();
+    double energy(float H);
 
     vector<vector<int>> spins;
 
