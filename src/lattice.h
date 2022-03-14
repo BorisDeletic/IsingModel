@@ -21,6 +21,7 @@ public:
     vector<vector<int>> spins;
 
     friend ostream& operator << (ostream &o, const Lattice &l);
+
 private:
     int n;
 };

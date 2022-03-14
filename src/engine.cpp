@@ -10,46 +10,68 @@
 #include "lattice.h"
 
 
-Engine::Engine()
+Engine::Engine(int n)
     :
+    n(n),
     T(0),
     H(0),
     gen(rd()),
-    rng(0.0, 1.0) //setup random number generator
+    tempRNG(0.0, 1.0), //setup random number generator
+    spinRNG(0, n-1)
 {
 }
 
 
 Lattice Engine::timeStep(Lattice& old)
 {
-    Lattice newLattice(old.spins.size());
+    Lattice newLattice(n);
+    newLattice.spins = old.spins;
 
-    calculateNewSpins(newLattice.spins, old.spins);
+    calculateNewSpinsMC(newLattice.spins);
 
     return newLattice;
 }
 
 
-void Engine::calculateNewSpins(vector<vector<int>> &newSpins, vector<vector<int>> &oldSpins)
+void Engine::calculateNewSpinsMC(vector<vector<int>> &newSpins)
 {
-    int n = oldSpins.size();
 
-    #pragma omp parallel for
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
-            int s0 = oldSpins[i][j];
+
+            int s0 = newSpins[i][j];
 
             // get neighbour spins and use wrap-around boundary conditions
-            int s1 = oldSpins[i - 1 >= 0 ? i - 1 : n - 1][j];
-            int s2 = oldSpins[i + 1 < n ? i + 1 : 0][j];
-            int s3 = oldSpins[i][j - 1 >= 0 ? j - 1 : n - 1];
-            int s4 = oldSpins[i][j + 1 < n ? j + 1 : 0];
+            int s1 = newSpins[i - 1 >= 0 ? i - 1 : n - 1][j];
+            int s2 = newSpins[i + 1 < n ? i + 1 : 0][j];
+            int s3 = newSpins[i][j - 1 >= 0 ? j - 1 : n - 1];
+            int s4 = newSpins[i][j + 1 < n ? j + 1 : 0];
 
             newSpins[i][j] = flipSpin(s0, {s1, s2, s3, s4});
         }
     }
-
 }
+
+/*void Engine::calculateNewSpinsMC(vector<vector<int>> &newSpins)
+{
+
+#pragma omp parallel for
+    for (int t = 0; t < n * n; t++) {
+        int i = spinRNG(gen);
+        int j = spinRNG(gen);
+
+        int s0 = newSpins[i][j];
+
+        // get neighbour spins and use wrap-around boundary conditions
+        int s1 = newSpins[i - 1 >= 0 ? i - 1 : n - 1][j];
+        int s2 = newSpins[i + 1 < n ? i + 1 : 0][j];
+        int s3 = newSpins[i][j - 1 >= 0 ? j - 1 : n - 1];
+        int s4 = newSpins[i][j + 1 < n ? j + 1 : 0];
+
+        newSpins[i][j] = flipSpin(s0, {s1, s2, s3, s4});
+    }
+}*/
+
 
 int Engine::flipSpin(int s0, vector<int> neighbours) {
     int sFlipped = s0 == 1 ? -1 : 1;
@@ -73,7 +95,7 @@ int Engine::flipSpin(int s0, vector<int> neighbours) {
     }
 
     float thermalEnergy = exp(- deltaE / T);
-    float threshold = rng(gen);
+    float threshold = tempRNG(gen);
 
     if (thermalEnergy > threshold)
     {

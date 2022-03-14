@@ -12,13 +12,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f1e1ffca-320f-4b4f-9b62-25b6f1e422c8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/engine.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lattice.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lattice.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/simulation.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/simulation.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/IsingModel.dir/main.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/IsingModel.dir/main.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/IsingModel.dir/src/engine.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/IsingModel.dir/src/engine.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/IsingModel.dir/src/lattice.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/IsingModel.dir/src/lattice.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/IsingModel.dir/src/simulation.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/IsingModel.dir/src/simulation.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/IsingModel.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/IsingModel.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lattice.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/lattice.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lattice.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/lattice.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/simulation.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/simulation.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/simulation.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/simulation.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +73,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
@@ -71,15 +81,16 @@
     <property name="cf.first.check.clang-format" value="false" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="cmake.loaded.for.project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="language.cpp.clang-tidy" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration name="IsingModel" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="IsingModel" TARGET_NAME="IsingModel" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="IsingModel" RUN_TARGET_NAME="IsingModel">
       <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="IsingModel" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="IsingModel" TARGET_NAME="IsingModel" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="IsingModel" RUN_TARGET_NAME="IsingModel">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -95,7 +106,8 @@
       <updated>1646690999237</updated>
       <workItem from="1646691001439" duration="1296000" />
       <workItem from="1646908151698" duration="13549000" />
-      <workItem from="1646999581969" duration="13427000" />
+      <workItem from="1646999581969" duration="20403000" />
+      <workItem from="1647124406358" duration="11605000" />
     </task>
     <servers />
   </component>
@@ -112,6 +124,22 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/simulation.cpp</url>
+          <line>85</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/simulation.cpp</url>
+          <line>96</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -35,7 +35,7 @@ double Lattice::magnetisation() {
         }
     }
 
-    return mag / (n * n);
+    return mag;
 }
 
 
