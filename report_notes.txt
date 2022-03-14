@@ -1,0 +1,5 @@
+* Explain code structure, class choices
+* Discuss generating random numbers for MC simulation
+* Parallelisation if present
+* How we calculate equilibrium
+* Why chose C++ over python.

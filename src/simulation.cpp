@@ -81,44 +81,6 @@ int Simulation::timeToEquilibrium() {
 
 
 
-double Simulation::autoCovariance(int t_start, int tau)
-{
-    double meanMagnetisation = reduce(magnetisations.begin() + t_start, magnetisations.end()) / (magnetisations.size() - t_start);
-
-    vector<double> covariance;
-
-    for (int i = t_start; i < magnetisations.size() - tau; i++)
-    {
-        double magP = magnetisations[i] - meanMagnetisation;
-        double magP_tau = magnetisations[i + tau] - meanMagnetisation;
-
-        covariance.push_back(magP * magP_tau);
-    }
-
-    double meanCov = reduce(covariance.begin(), covariance.end()) / covariance.size();
-
-    return meanCov;
-}
-
-
-vector<double> Simulation::autoCorrelations()
-{
-  //  int t_eq = timeToEquilibrium();
-    int t_eq = 0;
-    double autoCov0 = autoCovariance(t_eq, 0);
-
-    vector<double> autoCor;
-
-    float maxTau = (magnetisations.size() - t_eq) * correlationCutoff;
-
-    for (int tau = 0; tau < maxTau; tau++)
-    {
-        autoCor.push_back(autoCovariance(t_eq, tau) / autoCov0);
-    }
-
-    return autoCor;
-}
-
 
 
 ostream &operator<<(ostream &o, const Simulation &s) {

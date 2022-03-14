@@ -15,17 +15,14 @@ public:
     void run(int timeSteps);
 
     int timeToEquilibrium();
-    double autoCovariance(int t_start, int tau);
-    vector<double> autoCorrelations();
 
     void setTemperature(float T) { engine.setTemperature(T); };
     void setHField(float H) { engine.setHField(H); };
     void randomize(void) {lattice.randomize(); };
 
-    vector<double>& getMags() {return magnetisations; };
-
     friend ostream& operator << (ostream &o, const Simulation &l);
-private:
+
+    // properties
     Engine engine;
     Lattice lattice;
 
