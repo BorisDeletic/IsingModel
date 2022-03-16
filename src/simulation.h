@@ -14,7 +14,8 @@ public:
 
     void run(int timeSteps);
 
-    int timeToEquilibrium();
+    int timeToEquilibriumF();
+    int timeToEquilibriumM();
 
     void setTemperature(float T) { engine.setTemperature(T); };
     void setHField(float H) { engine.setHField(H); };
@@ -31,6 +32,7 @@ public:
 
     int n;
     const float correlationCutoff = 0.2;
+
 };
 
 

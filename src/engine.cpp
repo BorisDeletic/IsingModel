@@ -32,7 +32,7 @@ Lattice Engine::timeStep(Lattice& old)
     return newLattice;
 }
 
-
+/*
 void Engine::calculateNewSpinsMC(vector<vector<int>> &newSpins)
 {
 
@@ -50,12 +50,11 @@ void Engine::calculateNewSpinsMC(vector<vector<int>> &newSpins)
             newSpins[i][j] = flipSpin(s0, {s1, s2, s3, s4});
         }
     }
-}
+}*/
 
-/*void Engine::calculateNewSpinsMC(vector<vector<int>> &newSpins)
+void Engine::calculateNewSpinsMC(vector<vector<int>> &newSpins)
 {
 
-#pragma omp parallel for
     for (int t = 0; t < n * n; t++) {
         int i = spinRNG(gen);
         int j = spinRNG(gen);
@@ -70,7 +69,7 @@ void Engine::calculateNewSpinsMC(vector<vector<int>> &newSpins)
 
         newSpins[i][j] = flipSpin(s0, {s1, s2, s3, s4});
     }
-}*/
+}
 
 
 int Engine::flipSpin(int s0, vector<int> neighbours) {

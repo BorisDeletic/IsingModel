@@ -63,26 +63,37 @@ build cmake_object_order_depends_target_IsingModel: phony || CMakeFiles/IsingMod
 build CMakeFiles/IsingModel.dir/main.cpp.obj: CXX_COMPILER__IsingModel_Debug C$:/Users/boris/Documents/Programming/IsingModel/main.cpp || cmake_object_order_depends_target_IsingModel
   DEP_FILE = CMakeFiles\IsingModel.dir\main.cpp.obj.d
   FLAGS = -fopenmp -g -std=gnu++17
+  INCLUDES = -IC:/Users/boris/Documents/Programming/IsingModel/simulations
   OBJECT_DIR = CMakeFiles\IsingModel.dir
   OBJECT_FILE_DIR = CMakeFiles\IsingModel.dir
 
 build CMakeFiles/IsingModel.dir/src/lattice.cpp.obj: CXX_COMPILER__IsingModel_Debug C$:/Users/boris/Documents/Programming/IsingModel/src/lattice.cpp || cmake_object_order_depends_target_IsingModel
   DEP_FILE = CMakeFiles\IsingModel.dir\src\lattice.cpp.obj.d
   FLAGS = -fopenmp -g -std=gnu++17
+  INCLUDES = -IC:/Users/boris/Documents/Programming/IsingModel/simulations
   OBJECT_DIR = CMakeFiles\IsingModel.dir
   OBJECT_FILE_DIR = CMakeFiles\IsingModel.dir\src
 
 build CMakeFiles/IsingModel.dir/src/engine.cpp.obj: CXX_COMPILER__IsingModel_Debug C$:/Users/boris/Documents/Programming/IsingModel/src/engine.cpp || cmake_object_order_depends_target_IsingModel
   DEP_FILE = CMakeFiles\IsingModel.dir\src\engine.cpp.obj.d
   FLAGS = -fopenmp -g -std=gnu++17
+  INCLUDES = -IC:/Users/boris/Documents/Programming/IsingModel/simulations
   OBJECT_DIR = CMakeFiles\IsingModel.dir
   OBJECT_FILE_DIR = CMakeFiles\IsingModel.dir\src
 
 build CMakeFiles/IsingModel.dir/src/simulation.cpp.obj: CXX_COMPILER__IsingModel_Debug C$:/Users/boris/Documents/Programming/IsingModel/src/simulation.cpp || cmake_object_order_depends_target_IsingModel
   DEP_FILE = CMakeFiles\IsingModel.dir\src\simulation.cpp.obj.d
   FLAGS = -fopenmp -g -std=gnu++17
+  INCLUDES = -IC:/Users/boris/Documents/Programming/IsingModel/simulations
   OBJECT_DIR = CMakeFiles\IsingModel.dir
   OBJECT_FILE_DIR = CMakeFiles\IsingModel.dir\src
+
+build CMakeFiles/IsingModel.dir/simulations/decorrelation.cpp.obj: CXX_COMPILER__IsingModel_Debug C$:/Users/boris/Documents/Programming/IsingModel/simulations/decorrelation.cpp || cmake_object_order_depends_target_IsingModel
+  DEP_FILE = CMakeFiles\IsingModel.dir\simulations\decorrelation.cpp.obj.d
+  FLAGS = -fopenmp -g -std=gnu++17
+  INCLUDES = -IC:/Users/boris/Documents/Programming/IsingModel/simulations
+  OBJECT_DIR = CMakeFiles\IsingModel.dir
+  OBJECT_FILE_DIR = CMakeFiles\IsingModel.dir\simulations
 
 
 # =============================================================================
@@ -92,7 +103,7 @@ build CMakeFiles/IsingModel.dir/src/simulation.cpp.obj: CXX_COMPILER__IsingModel
 #############################################
 # Link the executable IsingModel.exe
 
-build IsingModel.exe: CXX_EXECUTABLE_LINKER__IsingModel_Debug CMakeFiles/IsingModel.dir/main.cpp.obj CMakeFiles/IsingModel.dir/src/lattice.cpp.obj CMakeFiles/IsingModel.dir/src/engine.cpp.obj CMakeFiles/IsingModel.dir/src/simulation.cpp.obj
+build IsingModel.exe: CXX_EXECUTABLE_LINKER__IsingModel_Debug CMakeFiles/IsingModel.dir/main.cpp.obj CMakeFiles/IsingModel.dir/src/lattice.cpp.obj CMakeFiles/IsingModel.dir/src/engine.cpp.obj CMakeFiles/IsingModel.dir/src/simulation.cpp.obj CMakeFiles/IsingModel.dir/simulations/decorrelation.cpp.obj
   FLAGS = -fopenmp -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\IsingModel.dir

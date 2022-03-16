@@ -5,25 +5,58 @@
 #include <vector>
 #include <algorithm>
 #include <iostream>
+#include "decorrelation.h"
 #include "../src/simulation.h"
 
 using namespace std;
 
-double autoCovariance(vector<double>& mag, int t_start, int tau);
-vector<double> autoCorrelations(vector<double>& mag);
-int decorrelationTime(vector<double>& autoCorrelation);
+
+void runDecorrelationSimulation()
+{
+    vector<int> Ns = {10, 100, 1000, 10000};
+    vector<float> Ts = {0, 0.5, 1, 2, 4, 8, 16};
 
 
-void logResults(int n, float T, int steps)
+    for (int n : Ns) {
+        for (int i = 0; i < Ts.size(); i++) {
+            logResults(n, Ts[i], 1000);
+        }
+    }
+
+}
+
+
+void logResults(int n, float T, int steps, bool randomised)
 {
     Simulation sim(n);
+
+    if (randomised) sim.randomize();
     sim.setTemperature(T);
+
     sim.run(steps);
 
-    vector<double> correlations = autoCorrelations(sim.magnetisations);
+    cout << sim;
+    cout << "T = " << T << endl;
+    int time = sim.timeToEquilibriumM();
+    cout << "steps to eq = " << time << endl;
+
+    vector<double> correlations = autoCorrelations(sim.magnetisations, time);
     int decorTime = decorrelationTime(correlations);
 
 
+
+    char fname[100];
+    sprintf(fname, "..\\results\\decorrelation_n%d_T%.1f.csv", n, T);
+
+    freopen(fname, "w", stdout);
+    freopen("..\\results\\decorrelation_times.csv", "a", stderr);
+
+    for (int i = 0; i < correlations.size(); i++)
+    {
+        cout << correlations[i] << ",";
+    }
+
+    cerr << n << "," << T << "," << decorTime << endl;
 }
 
 
@@ -45,13 +78,11 @@ int decorrelationTime(vector<double>& autoCorrelation)
 }
 
 
-vector<double> autoCorrelations(vector<double>& mags)
+vector<double> autoCorrelations(vector<double>& mags, int t_eq)
 {
     float correlationCutoff = 0.2; 
     // the maximum offset we can calculate correlation for is 20% of total time
     
-    //  int t_eq = timeToEquilibrium();
-    int t_eq = 0;
     double autoCov0 = autoCovariance(mags, t_eq, 0);
 
     vector<double> autoCors;

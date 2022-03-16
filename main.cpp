@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
-#include "src\simulation.h"
+#include "src/simulation.h"
+#include "simulations/decorrelation.h"
 
 using namespace std;
 
@@ -8,14 +9,14 @@ using namespace std;
 
 void timeToEquilibrium()
 {
-    Simulation sim(500);
+    Simulation sim(100);
 
     //sim.randomize();
     sim.setTemperature(4);
   //  sim.setHField(0.1);
-    sim.run(600);
+    sim.run(100);
 
-    int time = sim.timeToEquilibrium();
+    int time = sim.timeToEquilibriumM();
 
     cout << "steps to eq = " << time << endl;
 }
@@ -23,19 +24,19 @@ void timeToEquilibrium()
 
 void meanMag(float T)
 {
-    Simulation sim(500);
+    Simulation sim(100);
 
     sim.randomize();
     sim.setTemperature(T);
-    sim.run(6000);
+    sim.run(1000);
 
-    vector<double> mags = sim.getMags();
+    vector<double> mags = sim.magnetisations;
     double meanMag = reduce(mags.begin(), mags.end()) / mags.size();
 
     cout << sim;
     cout << "T = " << T << endl;
 
-    int time = sim.timeToEquilibrium();
+    int time = sim.timeToEquilibriumM();
     cout << "steps to eq = " << time << endl;
 
     cout << "mean mags = " << meanMag << endl << endl;
@@ -44,32 +45,15 @@ void meanMag(float T)
 }
 
 
-void autoCorrelation(float T)
-{
-    Simulation sim(100);
-    sim.randomize();
-
-    sim.setTemperature(T);
-    sim.run(500);
-
-    vector<double> autoCors = sim.autoCorrelations();
-
- //   int t_eq = sim.timeToEquilibrium();
-
-    for (int i = 0; i < autoCors.size(); i++)
-    {
-        printf("autoCor %d = %f\n", i, autoCors[i]);
-    }
-}
-
 
 int main()
 {
  //   meanMag(30);
 //    meanMag(15);
  //   meanMag(5);
-    meanMag(0.5);
-
+   // meanMag(2);
+    //logResults(200, 3, 500, true);
+    logResults(200, 6, 500, false);
    // timeToEquilibrium();
 
    // autoCorrelation(1);
