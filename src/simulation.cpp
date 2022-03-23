@@ -14,7 +14,9 @@ Simulation::Simulation(int n)
     :
     engine(n),
     lattice(n),
-    n(n)
+    n(n),
+    magnetisations(),
+    flips()
 {
 }
 
@@ -22,62 +24,31 @@ Simulation::Simulation(int n)
 void Simulation::run(int timeSteps)
 {
     for (int i = 0; i < timeSteps; i++) {
+        magnetisations.push_back(lattice.magnetisation());
+        energy.push_back(lattice.energy(getHField()));
+
         Lattice nextLattice = engine.timeStep(lattice);
 
-        float eq = engine.fractionSpinsFlipped(lattice, nextLattice);
-
-        flips.push_back(eq);
-        magnetisations.push_back(lattice.magnetisation());
-
-      //  printf("%d: eq = %f, mag = %f\n", i, eq, lattice.magnetisation());
+        //float eq = engine.fractionSpinsFlipped(lattice, nextLattice);
+       // flips.push_back(eq);
 
         lattice = nextLattice;
     }
 }
 
 
-int Simulation::timeToEquilibriumF() {
+optional<int> Simulation::timeToEquilibrium() {
 /*
  * Calculate the number of steps before magnetisations stabilises -> equilibrium
- * We consider magnetisations stabilised when they does not fluctuate more than 1% from mean
- * For window steps.
+ * We consider magnetisations stabilised when the line of best fit is flat.
+ * Only looking at the magnetisations in a window (1/10th of the total time).
  */
-    const int windowSize = 20;
-    const float fluctuationThreshold = 0.01;
+    const int steps = magnetisations.size();
 
-    for (int i = 0; i < flips.size() - windowSize; i++) {
-        auto start = flips.begin() + i;
-        auto end = flips.begin() + i + windowSize;
+    const int windowSize = steps / 10;
+    const float slopeThreshold = 0.00005;
 
-        float meanFlips = reduce(start, end) / windowSize;
-        float maxFlips  = *max_element(start, end);
-        float minFlips  = *min_element(start, end);
-
-        if (
-                (maxFlips - meanFlips) / meanFlips < fluctuationThreshold &&
-                (meanFlips - minFlips) / meanFlips < fluctuationThreshold)
-        {
-            return i;
-        }
-    }
-
-    // equilibrium conditions not reached
-    printf("Equilibrium not reached");
-    throw std::exception();
-
-}
-
-
-int Simulation::timeToEquilibriumM() {
-/*
- * Calculate the number of steps before magnetisations stabilises -> equilibrium
- * We consider magnetisations stabilised when they does not fluctuate more than 1% from mean
- * For window steps.
- */
-    const int windowSize = 50;
-    const float slopeThreshold = 0.0001;
-
-     for (int i = 0; i < magnetisations.size() - windowSize; i++) {
+     for (int i = 0; i < steps - windowSize; i++) {
          auto start = magnetisations.begin() + i;
          auto end = magnetisations.begin() + i + windowSize;
 
@@ -88,7 +59,6 @@ int Simulation::timeToEquilibriumM() {
         }
 
         double slope = gradientLineBestFit(magsWindow);
-        cout << "slope = " << slope << endl;
 
         if (abs(slope) < slopeThreshold) {
             return i;
@@ -96,9 +66,7 @@ int Simulation::timeToEquilibriumM() {
     }
 
     // equilibrium conditions not reached
-    printf("Equilibrium not reached");
-    throw std::exception();
-
+    return nullopt;
 }
 
 

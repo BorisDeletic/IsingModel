@@ -1,59 +1,24 @@
 #include <iostream>
 #include <vector>
 #include "src/simulation.h"
-#include "simulations/decorrelation.h"
+#include "simulations/run.h"
 
 using namespace std;
 
 
 
-void timeToEquilibrium()
-{
-    Simulation sim(100);
-
-    //sim.randomize();
-    sim.setTemperature(4);
-  //  sim.setHField(0.1);
-    sim.run(100);
-
-    int time = sim.timeToEquilibriumM();
-
-    cout << "steps to eq = " << time << endl;
-}
-
-
-void meanMag(float T)
-{
-    Simulation sim(100);
-
-    sim.randomize();
-    sim.setTemperature(T);
-    sim.run(1000);
-
-    vector<double> mags = sim.magnetisations;
-    double meanMag = reduce(mags.begin(), mags.end()) / mags.size();
-
-    cout << sim;
-    cout << "T = " << T << endl;
-
-    int time = sim.timeToEquilibriumM();
-    cout << "steps to eq = " << time << endl;
-
-    cout << "mean mags = " << meanMag << endl << endl;
-
-
-}
-
-
 
 int main()
 {
+    // runMeanMagnetisationSims();
+    runSimulations();
  //   meanMag(30);
 //    meanMag(15);
  //   meanMag(5);
-   // meanMag(2);
+   //  meanMag(2, );
+  // runMeanMagnetisationSims();
     //logResults(200, 3, 500, true);
-    logResults(200, 6, 500, false);
+   // logResults(200, 2, 500, true);
    // timeToEquilibrium();
 
    // autoCorrelation(1);
@@ -64,3 +29,5 @@ int main()
 
   //  autoCorrelation(1.5);
 }
+
+

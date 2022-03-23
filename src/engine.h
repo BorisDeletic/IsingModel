@@ -16,10 +16,15 @@ public:
 
     void setTemperature(float temperature) {T = temperature; };
     void setHField(float field) {H = field; };
+    float getTemperature() { return T; };
+    float getHField() { return H; };
 
     float fractionSpinsFlipped(Lattice& oldLattice, Lattice& newLattice);
+
+    bool monteCarlo = false;
 private:
     void calculateNewSpinsMC(vector<vector<int>>& newSpins);
+    void calculateNewSpinsLA(vector<vector<int>>& newSpins);
     int flipSpin(int s0, vector<int> neighbours);
 
     int n;

@@ -34,7 +34,6 @@ double Lattice::magnetisation() {
             mag += spins[i][j];
         }
     }
-
     return mag;
 }
 

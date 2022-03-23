@@ -5,6 +5,7 @@
 #ifndef ISINGMODEL_SIMULATION_H
 #define ISINGMODEL_SIMULATION_H
 
+#include <optional>
 #include "engine.h"
 #include "lattice.h"
 
@@ -14,12 +15,14 @@ public:
 
     void run(int timeSteps);
 
-    int timeToEquilibriumF();
-    int timeToEquilibriumM();
+    optional<int> timeToEquilibrium();
 
     void setTemperature(float T) { engine.setTemperature(T); };
     void setHField(float H) { engine.setHField(H); };
-    void randomize(void) {lattice.randomize(); };
+    float getTemperature() { return engine.getTemperature(); };
+    float getHField() { return engine.getHField(); };
+
+    void randomize(void) { randomised = true; lattice.randomize(); };
 
     friend ostream& operator << (ostream &o, const Simulation &l);
 
@@ -28,9 +31,11 @@ public:
     Lattice lattice;
 
     vector<double> magnetisations;
+    vector<double> energy;
     vector<double> flips;
 
     int n;
+    bool randomised = false;
     const float correlationCutoff = 0.2;
 
 };

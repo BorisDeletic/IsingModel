@@ -5,15 +5,25 @@
 #ifndef ISINGMODEL_DECORRELATION_H
 #define ISINGMODEL_DECORRELATION_H
 
-#include <vector>
+#include "../src/simulation.h"
 
-std::vector<double> autoCorrelations(std::vector<double>& mag, int t_start);
+struct DecorResults
+{
+    int n;
+    float T;
+    bool randomised;
+    std::vector<double> correlations;
+    int decorrelationTime;
+};
+
+DecorResults getDecorrelationResults(Simulation& sim);
 
 double autoCovariance(std::vector<double>& mag, int t_start, int tau);
-int decorrelationTime(std::vector<double>& autoCorrelation);
+std::vector<double> autoCorrelations(std::vector<double>& mag, int t_start);
 
-void logResults(int n, float T, int steps, bool randomised = false);
+optional<int> decorrelationTime(std::vector<double>& autoCorrelation);
 
-void runDecorrelationSimulation();
+void logDecorrelationResults(DecorResults& results);
+
 
 #endif //ISINGMODEL_DECORRELATION_H

@@ -1,5 +1,10 @@
 * Explain code structure, class choices
-* Discuss generating random numbers for MC simulation
-* Parallelisation if present
+* Discuss generating random numbers for MC simulation - rand vs mersenne twister - speed considerations
+* Parallelisation of multiple sims, not one lattice.
 * How we calculate equilibrium
 * Why chose C++ over python.
+* Double steps everytime equilibrium not reached.
+
+* We get higher Tc for non random initial lattice
+* iterative algorithm seems to give same answers as MC, just faster (verify) and more reliable
+* Note spontaneous symmetry breaking for randomised initial lattice

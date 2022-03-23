@@ -27,18 +27,21 @@ Lattice Engine::timeStep(Lattice& old)
     Lattice newLattice(n);
     newLattice.spins = old.spins;
 
-    calculateNewSpinsMC(newLattice.spins);
+    if (monteCarlo) {
+        calculateNewSpinsMC(newLattice.spins);
+    } else {
+        calculateNewSpinsLA(newLattice.spins);
+    }
 
     return newLattice;
 }
 
-/*
-void Engine::calculateNewSpinsMC(vector<vector<int>> &newSpins)
-{
 
+//calculate linearly going through lattice
+void Engine::calculateNewSpinsLA(vector<vector<int>> &newSpins)
+{
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
-
             int s0 = newSpins[i][j];
 
             // get neighbour spins and use wrap-around boundary conditions
@@ -50,7 +53,7 @@ void Engine::calculateNewSpinsMC(vector<vector<int>> &newSpins)
             newSpins[i][j] = flipSpin(s0, {s1, s2, s3, s4});
         }
     }
-}*/
+}
 
 void Engine::calculateNewSpinsMC(vector<vector<int>> &newSpins)
 {
@@ -86,15 +89,14 @@ int Engine::flipSpin(int s0, vector<int> neighbours) {
     float Enow = - neighbourTerm - H * s0;
     float Eflip = - neighbourTermFlipped - H * sFlipped;
 
-
     float deltaE = Eflip - Enow;
 
     if (deltaE < 0.0f) { // flip the spin
         return sFlipped;
     }
 
-    float thermalEnergy = exp(- deltaE / T);
-    float threshold = tempRNG(gen);
+    double thermalEnergy = exp(- deltaE / T);
+    double threshold = tempRNG(gen);
 
     if (thermalEnergy > threshold)
     {
