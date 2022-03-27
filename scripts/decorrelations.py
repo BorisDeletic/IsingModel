@@ -52,9 +52,10 @@ for n in ns:
 
 
 for n in ns:
-    fig2, ax2 = plt.subplots()
+    fig2, ax2 = plt.subplots()#
 
     dfn = df.loc[df["n"]==n]
+    Ts = sorted(dfn['T'].unique())
     for T in Ts:
         ax2.plot(correlations[(n, T)], label = "T = {}".format(T))
 
@@ -63,7 +64,7 @@ for n in ns:
 
 
 ax.set_title("Temperature vs Decorrelation Time")
-ax.legend(loc="lower right")
+ax.legend(loc="upper left")
 
 
 plt.show()

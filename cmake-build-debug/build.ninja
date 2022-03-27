@@ -116,6 +116,13 @@ build CMakeFiles/IsingModel.dir/simulations/heat_capacity.cpp.obj: CXX_COMPILER_
   OBJECT_DIR = CMakeFiles\IsingModel.dir
   OBJECT_FILE_DIR = CMakeFiles\IsingModel.dir\simulations
 
+build CMakeFiles/IsingModel.dir/simulations/spins.cpp.obj: CXX_COMPILER__IsingModel_Debug C$:/Users/boris/Documents/Programming/IsingModel/simulations/spins.cpp || cmake_object_order_depends_target_IsingModel
+  DEP_FILE = CMakeFiles\IsingModel.dir\simulations\spins.cpp.obj.d
+  FLAGS = -fopenmp -g -std=gnu++17
+  INCLUDES = -IC:/Users/boris/Documents/Programming/IsingModel/simulations
+  OBJECT_DIR = CMakeFiles\IsingModel.dir
+  OBJECT_FILE_DIR = CMakeFiles\IsingModel.dir\simulations
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target IsingModel
@@ -124,7 +131,7 @@ build CMakeFiles/IsingModel.dir/simulations/heat_capacity.cpp.obj: CXX_COMPILER_
 #############################################
 # Link the executable IsingModel.exe
 
-build IsingModel.exe: CXX_EXECUTABLE_LINKER__IsingModel_Debug CMakeFiles/IsingModel.dir/main.cpp.obj CMakeFiles/IsingModel.dir/src/lattice.cpp.obj CMakeFiles/IsingModel.dir/src/engine.cpp.obj CMakeFiles/IsingModel.dir/src/simulation.cpp.obj CMakeFiles/IsingModel.dir/simulations/decorrelation.cpp.obj CMakeFiles/IsingModel.dir/simulations/mean_magnetisation.cpp.obj CMakeFiles/IsingModel.dir/simulations/run.cpp.obj CMakeFiles/IsingModel.dir/simulations/heat_capacity.cpp.obj
+build IsingModel.exe: CXX_EXECUTABLE_LINKER__IsingModel_Debug CMakeFiles/IsingModel.dir/main.cpp.obj CMakeFiles/IsingModel.dir/src/lattice.cpp.obj CMakeFiles/IsingModel.dir/src/engine.cpp.obj CMakeFiles/IsingModel.dir/src/simulation.cpp.obj CMakeFiles/IsingModel.dir/simulations/decorrelation.cpp.obj CMakeFiles/IsingModel.dir/simulations/mean_magnetisation.cpp.obj CMakeFiles/IsingModel.dir/simulations/run.cpp.obj CMakeFiles/IsingModel.dir/simulations/heat_capacity.cpp.obj CMakeFiles/IsingModel.dir/simulations/spins.cpp.obj
   FLAGS = -fopenmp -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\IsingModel.dir

@@ -15,7 +15,7 @@ MagResults getMagnetisationResults(Simulation& sim)
     optional<int> t_eq = sim.timeToEquilibrium();
     if (!t_eq) {
         // equilibrium conditions not reached
-        printf("Equilibrium not reached in %d steps\n", sim.magnetisations.size());
+        printf("Equilibrium not reached in %d steps from mags\n", sim.magnetisations.size());
         throw std::exception();
     }
 

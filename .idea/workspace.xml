@@ -12,35 +12,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f1e1ffca-320f-4b4f-9b62-25b6f1e422c8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/scripts/critical_temps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/decorrelations.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/simulations/heat_capacity.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/simulations/heat_capacity.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/simulations/mean_magnetisation.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/simulations/mean_magnetisation.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/simulations/run.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/simulations/run.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/IsingModel.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/IsingModel.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/heat_capacity.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simulations/spins.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simulations/spins.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/IsingModel.dir/main.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/IsingModel.dir/main.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/IsingModel.dir/src/engine.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/IsingModel.dir/src/engine.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/IsingModel.dir/src/lattice.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/IsingModel.dir/src/lattice.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/IsingModel.dir/src/simulation.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/IsingModel.dir/src/simulation.cpp.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/IsingModel.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/IsingModel.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/report_notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/report_notes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/critical_temps.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/critical_temps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/decorrelations.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/decorrelations.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/simulations/decorrelation.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/simulations/decorrelation.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulations/decorrelation.h" beforeDir="false" afterPath="$PROJECT_DIR$/simulations/decorrelation.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lattice.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/lattice.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/simulation.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/simulation.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/simulation.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/simulation.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulations/heat_capacity.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/simulations/heat_capacity.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulations/heat_capacity.h" beforeDir="false" afterPath="$PROJECT_DIR$/simulations/heat_capacity.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulations/mean_magnetisation.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/simulations/mean_magnetisation.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulations/run.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/simulations/run.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,15 +148,38 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="heat_capacity" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="IsingModel" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/heat_capacity.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="CMake Application.IsingModel" />
       <item itemvalue="Python.critical_temps" />
       <item itemvalue="Python.decorrelations" />
+      <item itemvalue="Python.heat_capacity" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.decorrelations" />
         <item itemvalue="Python.critical_temps" />
+        <item itemvalue="Python.heat_capacity" />
       </list>
     </recent_temporary>
   </component>
@@ -183,7 +194,7 @@
       <workItem from="1646691001439" duration="1296000" />
       <workItem from="1646908151698" duration="13549000" />
       <workItem from="1646999581969" duration="20403000" />
-      <workItem from="1647124406358" duration="56881000" />
+      <workItem from="1647124406358" duration="80994000" />
     </task>
     <servers />
   </component>
@@ -200,22 +211,6 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/simulations/run.cpp</url>
-          <line>18</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/simulations/mean_magnetisation.cpp</url>
-          <line>29</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

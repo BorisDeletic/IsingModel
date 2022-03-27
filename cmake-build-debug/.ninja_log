@@ -1,17 +1,12 @@
 # ninja log v5
-14	906	6697498241182235	CMakeFiles/IsingModel.dir/simulations/decorrelation.cpp.obj	e1165227e7c2947e
-3	619	6697498238312557	CMakeFiles/IsingModel.dir/main.cpp.obj	fecb840bc26fa658
-20	750	6697498239607483	CMakeFiles/IsingModel.dir/simulations/mean_magnetisation.cpp.obj	5146f255e02a5cb6
-932	1131	6697498243382535	IsingModel.exe	43bc4a863fa3edc7
-18	1176	6697490083103843	CMakeFiles/IsingModel.dir/src/engine.cpp.obj	a5e8b2855ff71387
-22	807	6697498240093278	CMakeFiles/IsingModel.dir/simulations/run.cpp.obj	beef2621f9d2b706
-17	932	6697498241427558	CMakeFiles/IsingModel.dir/src/simulation.cpp.obj	1143b12be26b71c2
-3	454	6696675398165176	CMakeFiles/IsingModel.dir/src/lattice.cpp.obj	91c752ddfad3b4c2
-23	181	6697506988453249	CMakeFiles/IsingModel.dir/simulations/heat_capacity.cpp.obj	4a54de9de884b83e
+3	837	6700418831341277	CMakeFiles/IsingModel.dir/simulations/decorrelation.cpp.obj	e1165227e7c2947e
 3	631	6697506992930420	CMakeFiles/IsingModel.dir/main.cpp.obj	fecb840bc26fa658
-18	767	6697506994304763	CMakeFiles/IsingModel.dir/simulations/mean_magnetisation.cpp.obj	5146f255e02a5cb6
-20	798	6697506994613564	CMakeFiles/IsingModel.dir/simulations/run.cpp.obj	beef2621f9d2b706
-15	903	6697506995674586	CMakeFiles/IsingModel.dir/simulations/decorrelation.cpp.obj	e1165227e7c2947e
+11	624	6697708228792575	CMakeFiles/IsingModel.dir/simulations/mean_magnetisation.cpp.obj	5146f255e02a5cb6
+838	1033	6700418833268974	IsingModel.exe	231966459d8b9857
 11	925	6697506995873592	CMakeFiles/IsingModel.dir/src/engine.cpp.obj	a5e8b2855ff71387
+12	788	6700414653408269	CMakeFiles/IsingModel.dir/simulations/run.cpp.obj	beef2621f9d2b706
 13	969	6697506996324001	CMakeFiles/IsingModel.dir/src/simulation.cpp.obj	1143b12be26b71c2
-969	1152	6697506998111026	IsingModel.exe	231966459d8b9857
+3	454	6696675398165176	CMakeFiles/IsingModel.dir/src/lattice.cpp.obj	91c752ddfad3b4c2
+11	752	6697702921546465	CMakeFiles/IsingModel.dir/simulations/heat_capacity.cpp.obj	4a54de9de884b83e
+3	132	6700949367057521	CMakeFiles/IsingModel.dir/simulations/spins.cpp.obj	ed669dac8668d11d
+132	340	6700949369119393	IsingModel.exe	be3052a8236d1a30

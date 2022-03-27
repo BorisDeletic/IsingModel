@@ -8,3 +8,8 @@
 * We get higher Tc for non random initial lattice
 * iterative algorithm seems to give same answers as MC, just faster (verify) and more reliable
 * Note spontaneous symmetry breaking for randomised initial lattice
+* Time TO equilibrium not deterministic if steps changes
+
+* Spatial correlation functions
+* Multicritical points
+https://en.wikipedia.org/wiki/Phase_transition

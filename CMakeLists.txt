@@ -15,5 +15,5 @@ add_executable(IsingModel
         src/simulation.cpp
         src/simulation.h
         simulations/decorrelation.cpp
-        simulations/decorrelation.h simulations/mean_magnetisation.cpp simulations/mean_magnetisation.h simulations/run.cpp simulations/run.h simulations/heat_capacity.cpp simulations/heat_capacity.h)
+        simulations/decorrelation.h simulations/mean_magnetisation.cpp simulations/mean_magnetisation.h simulations/run.cpp simulations/run.h simulations/heat_capacity.cpp simulations/heat_capacity.h simulations/spins.cpp simulations/spins.h)
 

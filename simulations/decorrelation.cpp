@@ -8,7 +8,6 @@
 #include <fstream>
 #include <optional>
 #include "decorrelation.h"
-#include "../src/simulation.h"
 
 
 
@@ -27,17 +26,17 @@ DecorResults getDecorrelationResults(Simulation& sim)
     optional<int> t_eq = sim.timeToEquilibrium();
     if (!t_eq) {
         // equilibrium conditions not reached
-        printf("Equilibrium not reached in %d steps\n", sim.magnetisations.size());
+        printf("Equilibrium not reached in %d steps from decor\n", sim.magnetisations.size());
         throw std::exception();
     }
 
-
+    t_eq = 0;
     vector<double> correlations = autoCorrelations(sim.magnetisations, *t_eq);
     optional<int> decorTime = decorrelationTime(correlations);
 
     if (!decorTime) {
         printf("Did not decorrelate in %d steps\n", sim.magnetisations.size());
-        throw std::exception();
+        //throw std::exception();
     }
 
 
