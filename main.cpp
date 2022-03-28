@@ -10,8 +10,8 @@ using namespace std;
 
 int main()
 {
-    // runMeanMagnetisationSims();
-    runSimulations();
+//    runSpinsWithCooling();
+      runSimulations();
  //   meanMag(30);
 //    meanMag(15);
  //   meanMag(5);

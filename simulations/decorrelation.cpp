@@ -125,5 +125,7 @@ void logDecorrelationResults(DecorResults& results)
         myfile << results.correlations[i] << ",";
     }
     myfile << endl;
+
+    myfile.close();
 }
 

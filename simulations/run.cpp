@@ -7,6 +7,7 @@
 #include "heat_capacity.h"
 #include "decorrelation.h"
 #include "mean_magnetisation.h"
+#include "spins_logger.h"
 
 void runSimulations()
 {
@@ -43,6 +44,45 @@ void runSimulations()
             }
         }
     }
+}
+
+
+void runSpinsWithCooling()
+{
+    int n = 500;
+    int steps = 100;
+    float Ti = 3;
+    float Tf = 2.1;
+
+    SpinLogger logger(n, steps * 3, Ti, Tf);
+
+    Simulation sim(n);
+    sim.setTemperature(Ti);
+
+    cout << sim;
+
+    for (int i = 0; i < steps; i++) {
+        sim.run(1);
+        logger.logSpins(sim);
+    }
+
+    sim.setTemperature(Tf);
+    cout << sim;
+
+    for (int i = 0; i < steps; i++) {
+        sim.run(1);
+        logger.logSpins(sim);
+    }
+
+    sim.setTemperature(1.0);
+    cout << sim;
+
+    for (int i = 0; i < steps * 2; i++) {
+        sim.run(1);
+        logger.logSpins(sim);
+    }
+
+    cout << sim;
 }
 
 

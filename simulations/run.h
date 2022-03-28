@@ -9,6 +9,7 @@
 #include "../src/simulation.h"
 
 void runSimulations();
+void runSpinsWithCooling();
 
 void runSim(Simulation& sim, float T, int steps, bool randomised);
 
