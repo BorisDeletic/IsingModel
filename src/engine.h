@@ -13,6 +13,7 @@ public:
     Engine(int n);
 
     Lattice timeStep(Lattice& old);
+    double fluctuations(vector<double>& quantity, int t0);
 
     void setTemperature(float temperature) {T = temperature; };
     void setHField(float field) {H = field; };

@@ -15,6 +15,7 @@ struct MagResults
     bool randomised;
     int timeEquilibrium;
     double meanMagnetisation;
+    double spinFluctuation;
     std::vector<double> magnetisations;
 };
 

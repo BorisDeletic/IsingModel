@@ -14,18 +14,26 @@ def conv(s):
 
 
 def getMeanMagsWithError(df):
-    df_mean = df.groupby(["n", "T"])["mag"].mean()
-    df_std = df.groupby(["n", "T"])["mag"].std()
+    mean_mag = df.groupby(["n", "T"])["mag"].mean()
+    std_mag = df.groupby(["n", "T"])["mag"].std()
 
-    df_res = pd.DataFrame()
-    df_res["mean_mag"] = df_mean
-    df_res["std"] = df_std
-    df_res["reps"] = df.groupby(["n", "T"])["mag"].count()
+    mean_suc = df.groupby(["n", "T"])["susceptibility"].mean()
+    std_suc = df.groupby(["n", "T"])["susceptibility"].std()
 
-    return df_res.reset_index()
+    res = pd.DataFrame()
+    res["mean_mag"] = mean_mag
+    res["std_mag"] = std_mag
+
+    res["mean_susceptibility"] = mean_suc
+    res["std_susceptibility"] = std_suc
+
+    res["reps"] = df.groupby(["n", "T"])["mag"].count()
+
+    return res.reset_index()
 
 
 def getCriticalTemperature(dfn):
+
     mags = np.array(dfn["mean_mag"])
     gradient = np.gradient(mags)
 
@@ -42,7 +50,7 @@ while True:
     line2 = f.readline()
     if not line2: break #EOF
 
-    n, T, rand, t_eq, meanMag = line1.split(",")
+    n, T, rand, t_eq, meanMag, spinFlucs = line1.split(",")
 
     mags_str = line2.split(",")[:-1]
     mags = list(map(conv, mags_str))
@@ -53,6 +61,7 @@ while True:
         "R": int(rand),
         "t_eq": int(t_eq),
         "mag": float(meanMag),
+        "susceptibility" : float(spinFlucs)
     })
 
     all_mag[(int(n), float(T))] = mags

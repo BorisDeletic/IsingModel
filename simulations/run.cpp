@@ -95,7 +95,7 @@ void runSim(Simulation& sim, float T, int steps, bool randomised)
     optional<int> decorTime;
     vector<double> correlations;
 
-    while ((!t_eq || !decorTime) && steps < maxSteps) {
+    while ((!t_eq || !decorTime || sim.magnetisations.size() < 2 * *t_eq) && steps < maxSteps ) {
         sim.run(steps);
         t_eq = sim.timeToEquilibrium();
 

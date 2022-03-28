@@ -18,7 +18,7 @@ HeatResults getHeatCapacityResults(Simulation& sim)
     }
 
     float T = sim.getTemperature();
-    double energyStd = energyFluctuations(sim.energy, *t_eq);
+    double energyStd = sim.engine.fluctuations(sim.energy, *t_eq);
 
     double heatCapacity = pow(energyStd, 2) / (pow(T, 2));
     heatCapacity = T == 0 ? 0 : heatCapacity;
@@ -35,25 +35,6 @@ HeatResults getHeatCapacityResults(Simulation& sim)
     return res;
 }
 
-
-double energyFluctuations(vector<double>& energy, int t_eq)
-{
-    const int len = energy.size() - t_eq;
-
-    double meanEnergy = reduce(energy.begin() + t_eq, energy.end()) / len;
-
-    vector<double> rmsEnergy;
-
-    for (int i = t_eq; i < energy.size(); i++) {
-        double rms = pow(energy[i] - meanEnergy, 2);
-        rmsEnergy.push_back(rms);
-    }
-
-    double meanRMS = reduce(rmsEnergy.begin(), rmsEnergy.end()) / rmsEnergy.size();
-    double std = sqrt(meanRMS);
-
-    return std;
-}
 
 
 void logHeatCapacityResults(HeatResults& results)

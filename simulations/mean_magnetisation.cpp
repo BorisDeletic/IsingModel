@@ -25,7 +25,9 @@ MagResults getMagnetisationResults(Simulation& sim)
     for (double mag : sim.magnetisations) {
         mags.push_back(abs(mag));
     }
+
     double meanMag = reduce(mags.begin() + *t_eq, mags.end()) / (mags.size() - *t_eq);
+    double spinFluctuations = sim.engine.fluctuations(sim.magnetisations, *t_eq);
 
     MagResults res = {
             sim.n,
@@ -33,6 +35,7 @@ MagResults getMagnetisationResults(Simulation& sim)
             sim.randomised,
             *t_eq,
             meanMag,
+            spinFluctuations,
             sim.magnetisations
     };
 
@@ -47,11 +50,19 @@ void logMagnetisationResults(MagResults& results)
     ofstream myfile;
     myfile.open(R"(..\results\mean_magnetisations.csv)", fstream::app);
 
-    myfile << results.n << "," << results.T << "," << rand << "," << results.timeEquilibrium << "," << results.meanMagnetisation << endl;
+    myfile
+        << results.n << ","
+        << results.T << ","
+        << rand << ","
+        << results.timeEquilibrium << ","
+        << results.spinFluctuation << ","
+        << results.meanMagnetisation << endl;
+
     for (double mag : results.magnetisations)
     {
         myfile << mag << ",";
     }
+
     myfile << endl;
     myfile.close();
 }
