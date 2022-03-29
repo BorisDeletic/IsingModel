@@ -33,11 +33,9 @@ def getMeanMagsWithError(df):
 
 
 def getCriticalTemperature(dfn):
+    Tc = dfn.loc[dfn["mean_susceptibility"].idxmax()]["T"]
 
-    mags = np.array(dfn["mean_mag"])
-    gradient = np.gradient(mags)
-
-    return gradient
+    return Tc
 
 
 data = []
@@ -61,7 +59,7 @@ while True:
         "R": int(rand),
         "t_eq": int(t_eq),
         "mag": float(meanMag),
-        "susceptibility" : float(spinFlucs)
+        "susceptibility": float(spinFlucs)
     })
 
     all_mag[(int(n), float(T))] = mags
@@ -81,7 +79,7 @@ getCriticalTemperature(df_mean)
 
 fig, ax = plt.subplots()
 fig1, ax1 = plt.subplots()
-fig3, ax3 = plt.subplots()
+#fig3, ax3 = plt.subplots()
 #fig2, ax2 = plt.subplots()
 
 
@@ -91,12 +89,20 @@ for n in ns:
 
     reps = dfn["reps"].min() #use min value to display
 
-    gradient = np.gradient(dfn["mean_mag"])
-    gradient2 = np.gradient(gradient)
-
     ax.plot(dfn["T"], dfn["mean_mag"], label="lattice, n = {}, reps = {}".format(n, reps), linestyle='dashed', marker='s')
-    ax1.plot(dfn["T"], gradient, label = "gradient, n = {}".format(n), linestyle='dashed', marker='s')
-    ax3.plot(dfn["T"], gradient2, label = "gradient2, n = {}".format(n), linestyle='dashed', marker='s')
+
+
+
+for n in ns:
+    dfn = df_mean.loc[df_mean["n"]==n]
+    dfn["mean_susceptibility"] = dfn["mean_susceptibility"] / n**2
+
+    reps = dfn["reps"].min() #use min value to display
+
+    ax1.plot(dfn["T"], dfn["mean_susceptibility"], label="lattice, n = {}, reps = {}".format(n, reps), linestyle='dashed', marker='s')
+
+    Tc = getCriticalTemperature(dfn)
+    ax1.axvline(x = Tc)
 
 
 Tc = 2/math.log(1+math.sqrt(2))
@@ -122,13 +128,11 @@ for n in ns:
     ax2.set_title("Magnetisation vs Time, n = {}".format(n))
 
 
-ax.set_title("Temperature vs Mean Magnetisation")
+ax.set_title("Mean Magnetisation vs Temperature")
 ax.legend(loc="lower left")
 
-ax1.set_title("Temperature vs Gradient")
+ax1.set_title("Susceptibility vs Temperature")
 ax1.legend(loc="lower left")
-ax3.set_title("Temperature vs Gradient2")
-ax3.legend(loc="lower left")
 
 ax2.set_title("Magnetisation vs Time, n = {}".format(n))
 ax2.legend(loc="upper right")

@@ -102,5 +102,6 @@ ostream &operator<<(ostream &o, const Simulation &s) {
     o << "Simulation Parameters:" << endl;
     o << "n = " << s.n << endl;
     o << "steps = " << s.magnetisations.size() << endl;
+
     return o;
 }

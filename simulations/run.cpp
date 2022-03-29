@@ -13,17 +13,17 @@ void runSimulations()
 {
    // vector<int> Ns = {50, 100, 200};
    // vector<float> Ts = {0.5, 1, 1.5, 2, 3};
-   const int reps = 10;
-   set<int> Ns = {100};
+   const int reps = 5;
+   set<int> Ns = {10, 50, 100, 200};
    set<float> Ts;
 
-    for (float T = 0; T <= 3.5; T+=0.3) {
+    for (float T = 0; T < 2.2; T+=0.3) {
         Ts.insert(T);
     }
-    for (float T = 2.0; T < 2.5; T+=0.05) {
+    for (float T = 2.2; T < 2.4; T += 0.025) {
         Ts.insert(T);
     }
-    for (float T = 2.2; T <= 2.4; T += 0.025) {
+    for (float T = 2.4; T < 4.2; T+=0.3) {
         Ts.insert(T);
     }
 
@@ -91,17 +91,27 @@ void runSim(Simulation& sim, float T, int steps, bool randomised)
     if (randomised) sim.randomize();
     sim.setTemperature(T);
 
+    int minAverageFactor = 10;
+    int minSteps = maxSteps;
     optional<int> t_eq;
     optional<int> decorTime;
     vector<double> correlations;
 
-    while ((!t_eq || !decorTime || sim.magnetisations.size() < 2 * *t_eq) && steps < maxSteps ) {
+    //while steps < maxSteps or steps > minSteps
+    while (sim.magnetisations.size() < minSteps)
+    {
         sim.run(steps);
         t_eq = sim.timeToEquilibrium();
 
         if (t_eq) {
             correlations = autoCorrelations(sim.magnetisations, *t_eq);
             decorTime = decorrelationTime(correlations);
+
+            if (decorTime) {
+                int longerEqTime = *decorTime > *t_eq ? *decorTime : *t_eq;
+                minSteps = longerEqTime * minAverageFactor;
+                minSteps = minSteps < maxSteps ? minSteps : maxSteps; // cap min steps at the maximum allowed
+            }
         }
 
         steps *= 1.5;
@@ -121,5 +131,6 @@ void runSim(Simulation& sim, float T, int steps, bool randomised)
 
     cout << sim;
     cout << "T = " << T << endl;
-    cout << "steps to eq = " << *t_eq << endl;
+    cout << "steps to decorrelate = " << *decorTime << endl;
+    cout << "steps to eq = " << *t_eq << endl << endl;
 }

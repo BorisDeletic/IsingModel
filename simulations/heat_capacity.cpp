@@ -18,9 +18,9 @@ HeatResults getHeatCapacityResults(Simulation& sim)
     }
 
     float T = sim.getTemperature();
-    double energyStd = sim.engine.fluctuations(sim.energy, *t_eq);
+    double energyVar = sim.engine.fluctuations(sim.energy, *t_eq);
 
-    double heatCapacity = pow(energyStd, 2) / (pow(T, 2));
+    double heatCapacity = energyVar / (pow(T, 2));
     heatCapacity = T == 0 ? 0 : heatCapacity;
 
     HeatResults res = {
@@ -28,7 +28,7 @@ HeatResults getHeatCapacityResults(Simulation& sim)
             T,
             sim.randomised,
             sim.energy,
-            energyStd,
+            energyVar,
             heatCapacity
     };
 
@@ -44,7 +44,7 @@ void logHeatCapacityResults(HeatResults& results)
     ofstream myfile;
     myfile.open(R"(..\results\heat_capacity.csv)", fstream::app);
 
-    myfile << results.n << "," << results.T << "," << rand << "," << results.energyStd << "," << results.heatCapacity << endl;
+    myfile << results.n << "," << results.T << "," << rand << "," << results.energyVar << "," << results.heatCapacity << endl;
 
     for (int i = 0; i < results.energy.size(); i++)
     {

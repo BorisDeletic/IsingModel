@@ -30,13 +30,13 @@ DecorResults getDecorrelationResults(Simulation& sim)
         throw std::exception();
     }
 
-    t_eq = 0;
     vector<double> correlations = autoCorrelations(sim.magnetisations, *t_eq);
     optional<int> decorTime = decorrelationTime(correlations);
 
     if (!decorTime) {
         printf("Did not decorrelate in %d steps\n", sim.magnetisations.size());
         //throw std::exception();
+        decorTime = 0;
     }
 
 

@@ -126,8 +126,7 @@ float Engine::fractionSpinsFlipped(Lattice &oldLattice, Lattice &newLattice) {
 }
 
 
-
-double fluctuations(vector<double>& quantity, int t0)
+double Engine::fluctuations(vector<double>& quantity, int t0)
 {
     const int len = quantity.size() - t0;
 
@@ -140,10 +139,9 @@ double fluctuations(vector<double>& quantity, int t0)
         rmsQuantity.push_back(rms);
     }
 
-    double meanRMS = reduce(rmsQuantity.begin(), rmsQuantity.end()) / rmsQuantity.size();
-    double std = sqrt(meanRMS);
+    double variance = reduce(rmsQuantity.begin(), rmsQuantity.end()) / rmsQuantity.size();
 
-    return std;
+    return variance;
 }
 
 

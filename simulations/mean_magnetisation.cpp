@@ -55,8 +55,8 @@ void logMagnetisationResults(MagResults& results)
         << results.T << ","
         << rand << ","
         << results.timeEquilibrium << ","
-        << results.spinFluctuation << ","
-        << results.meanMagnetisation << endl;
+        << results.meanMagnetisation << ","
+        << results.spinFluctuation << endl;
 
     for (double mag : results.magnetisations)
     {
