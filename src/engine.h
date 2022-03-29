@@ -20,8 +20,6 @@ public:
     float getTemperature() { return T; };
     float getHField() { return H; };
 
-    float fractionSpinsFlipped(Lattice& oldLattice, Lattice& newLattice);
-
     bool monteCarlo = false;
 private:
     void calculateNewSpinsMC(vector<vector<int>>& newSpins);

@@ -107,25 +107,6 @@ int Engine::flipSpin(int s0, vector<int> neighbours) {
 }
 
 
-float Engine::fractionSpinsFlipped(Lattice &oldLattice, Lattice &newLattice) {
-    float spinsFlipped = 0;
-    int n = oldLattice.spins.size();
-
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = 0; j < n; j++)
-        {
-            if (oldLattice.spins[i][j] != newLattice.spins[i][j])
-            {
-                spinsFlipped++;
-            }
-        }
-    }
-
-    return spinsFlipped / (n*n);
-}
-
-
 double Engine::fluctuations(vector<double>& quantity, int t0)
 {
     const int len = quantity.size() - t0;

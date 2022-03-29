@@ -13,7 +13,7 @@ void runSpinsWithCooling();
 
 void runZeroFieldSim(Simulation& sim, float T, int steps, bool randomised);
 
-const int maxSteps = 10000;
+const int maxSteps = 30000;
 const int initSteps = 100;
 
 

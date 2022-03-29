@@ -29,9 +29,6 @@ void Simulation::run(int timeSteps)
 
         Lattice nextLattice = engine.timeStep(lattice);
 
-        //float eq = engine.fractionSpinsFlipped(lattice, nextLattice);
-       // flips.push_back(eq);
-
         lattice = nextLattice;
     }
 }
@@ -39,26 +36,26 @@ void Simulation::run(int timeSteps)
 
 optional<int> Simulation::timeToEquilibrium() {
 /*
- * Calculate the number of steps before magnetisations stabilises -> equilibrium
- * We consider magnetisations stabilised when the line of best fit is flat.
- * Only looking at the magnetisations in a window (1/10th of the total time).
+ * Calculate the number of steps before energy stabilises -> equilibrium
+ * We consider energy stabilised when the line of best fit is flat.
+ * Only looking at the energy in a window (1/10th of the total time).
  */
-    const int steps = magnetisations.size();
+    const int steps = energy.size();
 
-    const int windowSize = 100;
+    const int windowSize = steps / 10;
     const float slopeThreshold = 0.00005;
 
-     for (int i = 0; i < steps - windowSize; i++) {
-         auto start = magnetisations.begin() + i;
-         auto end = magnetisations.begin() + i + windowSize;
+     for (int i = 0; i < steps - windowSize; i+=5) {
+         auto start = energy.begin() + i;
+         auto end = energy.begin() + i + windowSize;
 
-        vector<double> magsWindow;
+        vector<double> window;
         for (auto it = start; it < end; it++)
         {
-            magsWindow.push_back(*it / (n*n)); //fractional magnetisation
+            window.push_back(*it / (n*n)); //fractional magnetisation
         }
 
-        double slope = gradientLineBestFit(magsWindow);
+        double slope = gradientLineBestFit(window);
 
         if (abs(slope) < slopeThreshold) {
             return i;

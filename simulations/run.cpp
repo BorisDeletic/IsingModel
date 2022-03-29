@@ -21,7 +21,7 @@ void runSimulations()
     for (float T = 2.2; T < 2.4; T += 0.025) {
         Ts.insert(T);
     }
-    for (float T = 2.4; T < 4.2; T+=0.3) {
+    for (float T = 2.4; T < 5; T+=0.3) {
         Ts.insert(T);
     }
 

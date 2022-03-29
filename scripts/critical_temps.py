@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 import math
 
@@ -15,6 +16,10 @@ def conv(s):
 def openData():
     f = open("../results/zero_field.csv")
 
+    lastn = 10
+    maxSpinVar = 0
+    Tc = 0
+
     # print file headers
     print(f.readline())
     print(f.readline())
@@ -22,6 +27,7 @@ def openData():
     print(f.readline())
 
     data = []
+    Tcs = {}
     all_mags = {}
     all_energys = {}
     all_correlations = {}
@@ -34,14 +40,14 @@ def openData():
         if not line4: break #EOF
 
         n, T, rand, t_eq, t_decor, meanMag, spinVar, heatCap, energyVar = list(map(conv, (line1.split(",")[:-1])))
-
+        n = int(n)
 
         mags = list(map(conv, line2.split(",")[:-1]))
         energys = list(map(conv, line3.split(",")[:-1]))
         correlations = list(map(conv, line4.split(",")[:-1]))
 
         data.append({
-            "n": int(n),
+            "n": n,
             "T": T,
             "R": int(rand),
             "t_eq": int(t_eq),
@@ -52,15 +58,28 @@ def openData():
             "energyVar": energyVar
         })
 
-        all_mags[(int(n), T)] = mags
-        all_energys[(int(n), T)] = energys
-        all_correlations[(int(n), T)] = correlations
+        all_mags[(n, T)] = mags
+        all_energys[(n, T)] = energys
+        all_correlations[(n, T)] = correlations
+
+        ##### get critical temperature
+        if spinVar > maxSpinVar:
+            Tc = T
+            maxSpinVar = spinVar
+
+        if lastn != n:
+            if n in Tcs:
+                Tcs[n].append(Tc)
+            else:
+                Tcs[n] = [Tc]
+            lastn = n
+        ######
 
     f.close()
 
     results = pd.DataFrame(data, columns=data[0].keys())
 
-    return results, all_mags, all_energys, all_correlations
+    return results, all_mags, all_energys, all_correlations, Tcs
 
 
 def getMeansWithError(df):
@@ -88,9 +107,27 @@ def getMeansWithError(df):
     return res.reset_index()
 
 
-def getCriticalTemperature(dfn):
-    Tc = dfn.loc[dfn["mean_susceptibility"].idxmax()]["T"]
-    return Tc
+def getCriticalTemperatures(Tcs, df_mean):
+    res = pd.DataFrame()
+
+    ns = []
+    mean_Tc = []
+    error_Tc = []
+
+    for n, Ts in Tcs.items():
+        ns.append(n)
+        error_Tc.append(np.std(Ts))
+
+        dfn = df_mean.loc[df_mean["n"] == n]
+        Tc = dfn.loc[dfn["mean_susceptibility"].idxmax()]["T"]
+        mean_Tc.append(Tc)
+
+    res["n"] = ns
+    res["mean_Tc"] = mean_Tc
+    res["error_Tc"] = error_Tc
+
+    return res
+
 
 
 
@@ -206,14 +243,26 @@ def plotEnergyVsTime(df, energys, n, Ts):
 
         ax.plot(energys[(n, T)], label = "T = {}".format(T), color=c)
 
-        t_eq = df.loc[(df["n"] == n) & (df["T"] == T)]["t_decor"].iloc[-1]
+        t_eq = df.loc[(df["n"] == n) & (df["T"] == T)]["t_eq"].iloc[-1]
         ax.axvline(x=t_eq, color=c, linestyle='--')
 
     ax.set_title("Energy vs Time, n = {}".format(n))
     ax.legend(loc="lower right")
 
 
-df_raw, all_mags, all_energys, all_correlations = openData()
+def plotCriticalTemperatureVsN(df):
+    fig, ax = plt.subplots()
+
+    print(df)
+    ax.errorbar(df["n"], df["mean_Tc"], yerr=df["error_Tc"], fmt='o')
+
+    ax.set_title("Critical Temperature vs Lattice Dimension")
+
+    ax.set_xlabel("Lattice Dimension")
+    ax.set_ylabel("Critical Temperature")
+
+
+df_raw, all_mags, all_energys, all_correlations, Tcs = openData()
 
 
 
@@ -222,24 +271,26 @@ Ts = sorted(df_raw['T'].unique())
 
 df_mean = getMeansWithError(df_raw)
 
+df_Tc = getCriticalTemperatures(Tcs, df_mean)
 
 
-plotMagVsTemp(df_mean)
-plotSusceptibility(df_mean)
-
-plotDecorrelationTimeVsTemperature(df_mean)
-
+# plotMagVsTemp(df_mean)
+#plotSusceptibility(df_mean)
+#
+# plotDecorrelationTimeVsTemperature(df_mean)
+#
 plotHeatCapacityVsTemperature(df_mean)
 plotEnergyVarianceVsTemperature(df_mean)
-
-
-showTs = [Ts[i] for i in range(1, len(Ts), len(Ts) // 5)]
-showTs.append(Ts[-1])
-
+#
+plotCriticalTemperatureVsN(df_Tc)
+#
+#showTs = [Ts[i] for i in range(1, len(Ts), len(Ts) // 5)]
+#showTs.append(Ts[-1])
+showTs = [8,9]
+#
 plotMagVsTime(df_raw, all_mags, ns[-1], showTs)
-plotCorrelationVsTime(df_raw, all_correlations, ns[-1], showTs)
+# plotCorrelationVsTime(df_raw, all_correlations, ns[-1], showTs)
 plotEnergyVsTime(df_raw, all_energys, ns[-1], showTs)
-
 
 
 plt.show()
