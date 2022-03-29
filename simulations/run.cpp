@@ -4,10 +4,8 @@
 
 #include <set>
 #include "run.h"
-#include "heat_capacity.h"
-#include "decorrelation.h"
-#include "mean_magnetisation.h"
 #include "spins_logger.h"
+#include "zero_field.h"
 
 void runSimulations()
 {
@@ -31,16 +29,12 @@ void runSimulations()
         for (int n: Ns) {
             for (float T: Ts) {
                 Simulation sim(n);
+                ZeroField nofield;
 
-                runSim(sim, T, initSteps, false);
+                runZeroFieldSim(sim, T, initSteps, false);
 
-                MagResults magRes = getMagnetisationResults(sim);
-                DecorResults decRes = getDecorrelationResults(sim);
-                HeatResults heatRes = getHeatCapacityResults(sim);
-
-                logMagnetisationResults(magRes);
-                logDecorrelationResults(decRes);
-                logHeatCapacityResults(heatRes);
+                nofield.calculateResults(sim);
+                nofield.logResults();
             }
         }
     }
@@ -86,7 +80,7 @@ void runSpinsWithCooling()
 }
 
 
-void runSim(Simulation& sim, float T, int steps, bool randomised)
+void runZeroFieldSim(Simulation& sim, float T, int steps, bool randomised)
 {
     if (randomised) sim.randomize();
     sim.setTemperature(T);
@@ -95,17 +89,19 @@ void runSim(Simulation& sim, float T, int steps, bool randomised)
     int minSteps = maxSteps;
     optional<int> t_eq;
     optional<int> decorTime;
-    vector<double> correlations;
 
-    //while steps < maxSteps or steps > minSteps
-    while (sim.magnetisations.size() < minSteps)
+    int first_t_eq = -1;
+
+    //while steps < minSteps
+    while (sim.magnetisations.size() < minSteps || !t_eq || !decorTime)
     {
         sim.run(steps);
         t_eq = sim.timeToEquilibrium();
 
         if (t_eq) {
-            correlations = autoCorrelations(sim.magnetisations, *t_eq);
-            decorTime = decorrelationTime(correlations);
+
+            vector<double> correlations = ZeroField::autoCorrelations(sim.magnetisations, *t_eq);
+            decorTime = ZeroField::decorrelationTime(correlations);
 
             if (decorTime) {
                 int longerEqTime = *decorTime > *t_eq ? *decorTime : *t_eq;
@@ -115,19 +111,13 @@ void runSim(Simulation& sim, float T, int steps, bool randomised)
         }
 
         steps *= 1.5;
+
+        if (sim.magnetisations.size() > maxSteps) {
+            printf("Equilibrium not reached in %d steps from main\n", sim.magnetisations.size());
+            throw std::exception();
+        }
     }
 
-// equilibrium conditions not reached
-    if (!t_eq) {
-        printf("Equilibrium not reached in %d steps from main\n", sim.magnetisations.size());
-        throw std::exception();
-    }
-
-    // Did not decorrelate in time
-    if (!decorTime) {
-        printf("Did not decorrelate in %d steps main\n", sim.magnetisations.size());
-        throw std::exception();
-    }
 
     cout << sim;
     cout << "T = " << T << endl;

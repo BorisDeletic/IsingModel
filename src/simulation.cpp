@@ -45,7 +45,7 @@ optional<int> Simulation::timeToEquilibrium() {
  */
     const int steps = magnetisations.size();
 
-    const int windowSize = steps / 10;
+    const int windowSize = 100;
     const float slopeThreshold = 0.00005;
 
      for (int i = 0; i < steps - windowSize; i++) {

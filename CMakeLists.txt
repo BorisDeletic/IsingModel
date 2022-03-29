@@ -14,6 +14,10 @@ add_executable(IsingModel
         src/engine.h
         src/simulation.cpp
         src/simulation.h
-        simulations/decorrelation.cpp
-        simulations/decorrelation.h simulations/mean_magnetisation.cpp simulations/mean_magnetisation.h simulations/run.cpp simulations/run.h simulations/heat_capacity.cpp simulations/heat_capacity.h simulations/spins_logger.cpp simulations/spins_logger.h)
+        simulations/run.cpp
+        simulations/run.h
+        simulations/spins_logger.cpp
+        simulations/spins_logger.h
+        simulations/zero_field.cpp
+        simulations/zero_field.h)
 

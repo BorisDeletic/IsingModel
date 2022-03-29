@@ -12,22 +12,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f1e1ffca-320f-4b4f-9b62-25b6f1e422c8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/simulations/zero_field.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simulations/zero_field.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/IsingModel.dir/main.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/IsingModel.dir/main.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/IsingModel.dir/src/engine.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/IsingModel.dir/src/engine.cpp.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/IsingModel.dir/src/simulation.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/IsingModel.dir/src/simulation.cpp.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/IsingModel.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/IsingModel.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/critical_temps.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/critical_temps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulations/decorrelation.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/simulations/decorrelation.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulations/heat_capacity.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/simulations/heat_capacity.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulations/heat_capacity.h" beforeDir="false" afterPath="$PROJECT_DIR$/simulations/heat_capacity.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulations/mean_magnetisation.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/simulations/mean_magnetisation.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/decorrelations.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulations/decorrelation.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulations/decorrelation.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulations/heat_capacity.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulations/heat_capacity.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulations/mean_magnetisation.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulations/mean_magnetisation.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/simulations/run.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/simulations/run.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/simulations/run.h" beforeDir="false" afterPath="$PROJECT_DIR$/simulations/run.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/simulation.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/simulation.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,7 +42,6 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -95,7 +98,7 @@
       <recent name="C:\Users\boris\Documents\Programming\IsingModel\results\decorrelation" />
     </key>
   </component>
-  <component name="RunManager" selected="CMake Application.IsingModel">
+  <component name="RunManager" selected="Python.critical_temps">
     <configuration name="IsingModel" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="IsingModel" TARGET_NAME="IsingModel" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="IsingModel" RUN_TARGET_NAME="IsingModel">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -199,8 +202,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.decorrelations" />
         <item itemvalue="Python.critical_temps" />
+        <item itemvalue="Python.decorrelations" />
         <item itemvalue="Python.heat_capacity" />
         <item itemvalue="Python.visualise_spins" />
       </list>
@@ -219,7 +222,7 @@
       <workItem from="1646999581969" duration="20403000" />
       <workItem from="1647124406358" duration="84262000" />
       <workItem from="1648399175608" duration="5755000" />
-      <workItem from="1648487600850" duration="5791000" />
+      <workItem from="1648487600850" duration="14412000" />
     </task>
     <servers />
   </component>
