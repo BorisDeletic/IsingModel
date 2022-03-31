@@ -18,6 +18,8 @@ add_executable(IsingModel
         simulations/run.h
         simulations/spins_logger.cpp
         simulations/spins_logger.h
-        simulations/zero_field.cpp
-        simulations/zero_field.h)
+        simulations/analysis.cpp
+        simulations/analysis.h
+        simulations/hysteresis.cpp
+        simulations/hysteresis.h)
 

@@ -102,8 +102,15 @@ build CMakeFiles/IsingModel.dir/simulations/spins_logger.cpp.obj: CXX_COMPILER__
   OBJECT_DIR = CMakeFiles\IsingModel.dir
   OBJECT_FILE_DIR = CMakeFiles\IsingModel.dir\simulations
 
-build CMakeFiles/IsingModel.dir/simulations/zero_field.cpp.obj: CXX_COMPILER__IsingModel_Debug C$:/Users/boris/Documents/Programming/IsingModel/simulations/zero_field.cpp || cmake_object_order_depends_target_IsingModel
-  DEP_FILE = CMakeFiles\IsingModel.dir\simulations\zero_field.cpp.obj.d
+build CMakeFiles/IsingModel.dir/simulations/analysis.cpp.obj: CXX_COMPILER__IsingModel_Debug C$:/Users/boris/Documents/Programming/IsingModel/simulations/analysis.cpp || cmake_object_order_depends_target_IsingModel
+  DEP_FILE = CMakeFiles\IsingModel.dir\simulations\analysis.cpp.obj.d
+  FLAGS = -fopenmp -g -std=gnu++17
+  INCLUDES = -IC:/Users/boris/Documents/Programming/IsingModel/simulations
+  OBJECT_DIR = CMakeFiles\IsingModel.dir
+  OBJECT_FILE_DIR = CMakeFiles\IsingModel.dir\simulations
+
+build CMakeFiles/IsingModel.dir/simulations/hysteresis.cpp.obj: CXX_COMPILER__IsingModel_Debug C$:/Users/boris/Documents/Programming/IsingModel/simulations/hysteresis.cpp || cmake_object_order_depends_target_IsingModel
+  DEP_FILE = CMakeFiles\IsingModel.dir\simulations\hysteresis.cpp.obj.d
   FLAGS = -fopenmp -g -std=gnu++17
   INCLUDES = -IC:/Users/boris/Documents/Programming/IsingModel/simulations
   OBJECT_DIR = CMakeFiles\IsingModel.dir
@@ -117,7 +124,7 @@ build CMakeFiles/IsingModel.dir/simulations/zero_field.cpp.obj: CXX_COMPILER__Is
 #############################################
 # Link the executable IsingModel.exe
 
-build IsingModel.exe: CXX_EXECUTABLE_LINKER__IsingModel_Debug CMakeFiles/IsingModel.dir/main.cpp.obj CMakeFiles/IsingModel.dir/src/lattice.cpp.obj CMakeFiles/IsingModel.dir/src/engine.cpp.obj CMakeFiles/IsingModel.dir/src/simulation.cpp.obj CMakeFiles/IsingModel.dir/simulations/run.cpp.obj CMakeFiles/IsingModel.dir/simulations/spins_logger.cpp.obj CMakeFiles/IsingModel.dir/simulations/zero_field.cpp.obj
+build IsingModel.exe: CXX_EXECUTABLE_LINKER__IsingModel_Debug CMakeFiles/IsingModel.dir/main.cpp.obj CMakeFiles/IsingModel.dir/src/lattice.cpp.obj CMakeFiles/IsingModel.dir/src/engine.cpp.obj CMakeFiles/IsingModel.dir/src/simulation.cpp.obj CMakeFiles/IsingModel.dir/simulations/run.cpp.obj CMakeFiles/IsingModel.dir/simulations/spins_logger.cpp.obj CMakeFiles/IsingModel.dir/simulations/analysis.cpp.obj CMakeFiles/IsingModel.dir/simulations/hysteresis.cpp.obj
   FLAGS = -fopenmp -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\IsingModel.dir

@@ -5,9 +5,9 @@
 #include <set>
 #include "run.h"
 #include "spins_logger.h"
-#include "zero_field.h"
+#include "analysis.h"
 
-void runSimulations()
+void runZeroFieldSimulations()
 {
    // vector<int> Ns = {50, 100, 200};
    // vector<float> Ts = {0.5, 1, 1.5, 2, 3};
@@ -24,14 +24,19 @@ void runSimulations()
     for (float T = 2.4; T < 5; T+=0.3) {
         Ts.insert(T);
     }
+    Ts.insert(2.269);
+    Ts.insert(2.271);
+    Ts.insert(2.272);
+    Ts.insert(2.273);
+    Ts.insert(2.274);
 
     for (int i = 0; i < reps; i++) {
         for (int n: Ns) {
             for (float T: Ts) {
                 Simulation sim(n);
-                ZeroField nofield;
+                Analysis nofield;
 
-                runZeroFieldSim(sim, T, initSteps, false);
+                runSim(sim, T, initSteps, false);
 
                 nofield.calculateResults(sim);
                 nofield.logResults();
@@ -41,46 +46,40 @@ void runSimulations()
 }
 
 
-void runSpinsWithCooling()
+void runFieldSimulations(float H)
 {
-    int n = 500;
-    int steps = 100;
-    float Ti = 3;
-    float Tf = 2.1;
+    // vector<int> Ns = {50, 100, 200};
+    // vector<float> Ts = {0.5, 1, 1.5, 2, 3};
+    const int reps = 5;
+    int n = 100;
+    set<float> Ts;
 
-    SpinLogger logger(n, steps * 3, Ti, Tf);
-
-    Simulation sim(n);
-    sim.setTemperature(Ti);
-
-    cout << sim;
-
-    for (int i = 0; i < steps; i++) {
-        sim.run(1);
-        logger.logSpins(sim);
+    for (float T = 0; T < 10; T+=0.3) {
+        Ts.insert(T);
     }
 
-    sim.setTemperature(Tf);
-    cout << sim;
+    for (int i = 0; i < reps; i++) {
+        for (float T: Ts) {
+            Simulation sim(n);
+            sim.setHField(H);
 
-    for (int i = 0; i < steps; i++) {
-        sim.run(1);
-        logger.logSpins(sim);
+            Analysis nonzerofield;
+            nonzerofield.fname = R"(..\results\H_field.csv)";
+
+            runSim(sim, T, initSteps, false);
+
+            nonzerofield.calculateResults(sim);
+            nonzerofield.logResults();
+
+        }
     }
-
-    sim.setTemperature(1.0);
-    cout << sim;
-
-    for (int i = 0; i < steps * 2; i++) {
-        sim.run(1);
-        logger.logSpins(sim);
-    }
-
-    cout << sim;
 }
 
 
-void runZeroFieldSim(Simulation& sim, float T, int steps, bool randomised)
+
+
+
+void runSim(Simulation& sim, float T, int steps, bool randomised)
 {
     if (randomised) sim.randomize();
     sim.setTemperature(T);
@@ -100,8 +99,8 @@ void runZeroFieldSim(Simulation& sim, float T, int steps, bool randomised)
 
         if (t_eq) {
 
-            vector<double> correlations = ZeroField::autoCorrelations(sim.magnetisations, *t_eq);
-            decorTime = ZeroField::decorrelationTime(correlations);
+            vector<double> correlations = Analysis::autoCorrelations(sim.magnetisations, *t_eq);
+            decorTime = Analysis::decorrelationTime(correlations);
 
             if (decorTime) {
                 int longerEqTime = *decorTime > *t_eq ? *decorTime : *t_eq;
@@ -121,6 +120,64 @@ void runZeroFieldSim(Simulation& sim, float T, int steps, bool randomised)
 
     cout << sim;
     cout << "T = " << T << endl;
+    cout << "H = " << sim.getHField() << endl;
     cout << "steps to decorrelate = " << *decorTime << endl;
     cout << "steps to eq = " << *t_eq << endl << endl;
+}
+
+
+
+void runSpinsWithCooling()
+{
+    int n = 100;
+    int steps = 100;
+    vector<float> Ts = {3, 2.1, 1.0};
+
+    SpinLogger logger(n, steps * Ts.size());
+
+    Simulation sim(n);
+    cout << sim;
+
+
+    for (float T : Ts) {
+        sim.setTemperature(T);
+        for (int i = 0; i < steps; i++) {
+            sim.run(1);
+
+            logger.logState(sim);
+            logger.logSpins(sim);
+        }
+    }
+}
+
+
+void runSpinsWithHField(float T)
+{
+    int n = 500;
+    int steps = 2;
+    vector<float> Hs;
+    for (float H = -0.5; H < 0.5; H+=0.01) {
+        Hs.push_back(H);
+    }
+    for (float H = 0.5; H > -0.5; H-=0.01) {
+        Hs.push_back(H);
+    }
+
+    SpinLogger logger(n, steps * Hs.size());
+
+    Simulation sim(n);
+    sim.randomize();
+    sim.setTemperature(T);
+    cout << sim;
+
+    for (float H : Hs) {
+        sim.setHField(H);
+        for (int i = 0; i < steps; i++) {
+            sim.run(1);
+            logger.logState(sim);
+            logger.logSpins(sim);
+        }
+
+        cout << sim;
+    }
 }

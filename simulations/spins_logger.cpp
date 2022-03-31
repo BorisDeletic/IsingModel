@@ -6,14 +6,30 @@
 #include <fstream>
 
 
-SpinLogger::SpinLogger(int n, int steps, float Ti, float Tf)
+SpinLogger::SpinLogger(int n, int steps)
 {
     ofstream myfile;
     myfile.open(fname);
 
-    myfile << n << "," << steps << "," << Ti << "," << Tf << endl;
+    myfile << n << "," << steps << endl;
     myfile.close();
 }
+
+
+void SpinLogger::logState(Simulation &sim)
+{
+    float T = sim.getTemperature();
+    float H = sim.getHField();
+    double mag = sim.magnetisations[sim.magnetisations.size() - 1];
+
+    ofstream myfile;
+    myfile.open(fname, fstream::app);
+
+    myfile << T << "," << H << "," << mag << endl;
+
+    myfile.close();
+}
+
 
 
 void SpinLogger::logSpins(Simulation &sim) {

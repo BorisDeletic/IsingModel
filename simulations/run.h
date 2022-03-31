@@ -8,12 +8,14 @@
 
 #include "../src/simulation.h"
 
-void runSimulations();
+void runZeroFieldSimulations();
+void runFieldSimulations(float H);
 void runSpinsWithCooling();
+void runSpinsWithHField(float T);
 
-void runZeroFieldSim(Simulation& sim, float T, int steps, bool randomised);
+void runSim(Simulation& sim, float T, int steps, bool randomised);
 
-const int maxSteps = 30000;
+const int maxSteps = 100000;
 const int initSteps = 100;
 
 

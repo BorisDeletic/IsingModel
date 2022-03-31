@@ -11,8 +11,9 @@
 class SpinLogger {
 public:
     void logSpins(Simulation& sim);
+    void logState(Simulation& sim);
 
-    SpinLogger(int n, int steps, float T_init, float T_final);
+    SpinLogger(int n, int steps);
 
 private:
     string fname = R"(..\results\spins.csv)";
