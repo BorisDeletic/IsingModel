@@ -87,3 +87,6 @@
 655	875	6703775045667775	IsingModel.exe	d04aa65e072057b7
 3	652	6703778864668798	CMakeFiles/IsingModel.dir/main.cpp.obj	fecb840bc26fa658
 652	886	6703778866992965	IsingModel.exe	d04aa65e072057b7
+3	1142	6704455042678403	CMakeFiles/IsingModel.dir/main.cpp.obj	fecb840bc26fa658
+17	1191	6704455043168853	CMakeFiles/IsingModel.dir/simulations/run.cpp.obj	beef2621f9d2b706
+1192	1609	6704455047322663	IsingModel.exe	d04aa65e072057b7

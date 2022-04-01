@@ -11,8 +11,8 @@ void runZeroFieldSimulations()
 {
    // vector<int> Ns = {50, 100, 200};
    // vector<float> Ts = {0.5, 1, 1.5, 2, 3};
-   const int reps = 5;
-   set<int> Ns = {10, 50, 100, 200};
+   const int reps = 1;
+   set<int> Ns = {10, 50, 100, 200, 500};
    set<float> Ts;
 
     for (float T = 0; T < 2.2; T+=0.3) {
@@ -29,6 +29,10 @@ void runZeroFieldSimulations()
     Ts.insert(2.272);
     Ts.insert(2.273);
     Ts.insert(2.274);
+    Ts.insert(2.276);
+    Ts.insert(2.277);
+    Ts.insert(2.278);
+    Ts.insert(2.279);
 
     for (int i = 0; i < reps; i++) {
         for (int n: Ns) {
@@ -88,8 +92,6 @@ void runSim(Simulation& sim, float T, int steps, bool randomised)
     int minSteps = maxSteps;
     optional<int> t_eq;
     optional<int> decorTime;
-
-    int first_t_eq = -1;
 
     //while steps < minSteps
     while (sim.magnetisations.size() < minSteps || !t_eq || !decorTime)

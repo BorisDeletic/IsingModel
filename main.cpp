@@ -13,29 +13,8 @@ void hysteresis();
 
 int main()
 {
-  //  runSpinsWithHField();
-//    vector<float> Hs;
-//    for (float H = -0.25; H <= 0.25; H+=0.005) {
-//        Hs.push_back(H);
-//    }
-//    for (float H = 0.25; H >= -0.25; H-=0.005) {
-//        Hs.push_back(H);
-//    }
-//
-//    runHysteresisLoop(100, 2.1, Hs);
-//    runHysteresisLoop(100, 2.2, Hs);
-//    runHysteresisLoop(100, 2.3, Hs);
-//    runHysteresisLoop(100, 2.6, Hs);
-//
-//    vector<float> Hs2;
-//    for (float H = -0.5; H <= 0.5; H+=0.01) {
-//        Hs2.push_back(H);
-//    }
-//    runHysteresisLoop(100, 1.5, Hs2);
 
-
-   // runZeroFieldSimulations();
- //  measureSpeed();
+    runZeroFieldSimulations();
 
     //runSpinsWithCooling();
    // runSpinsWithHField(3.0);
@@ -44,7 +23,7 @@ int main()
 //    for (float H : Hs) {
 //        runFieldSimulations(H);
 //    }
-    measureSpeed();
+   // measureSpeed();
 }
 
 

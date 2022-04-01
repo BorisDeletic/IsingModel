@@ -12,33 +12,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f1e1ffca-320f-4b4f-9b62-25b6f1e422c8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/results/H_field.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/hysteresis.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/speed.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/spins.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/hysteresis.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cache-v2-2666db116b9101f084be.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/IsingModel.dir/main.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/IsingModel.dir/main.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/IsingModel.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/IsingModel.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/critical_temps.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/critical_temps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/visualise_spins.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/visualise_spins.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulations/hysteresis.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/simulations/hysteresis.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulations/hysteresis.h" beforeDir="false" afterPath="$PROJECT_DIR$/simulations/hysteresis.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/simulations/run.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/simulations/run.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulations/run.h" beforeDir="false" afterPath="$PROJECT_DIR$/simulations/run.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulations/spins_logger.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/simulations/spins_logger.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulations/spins_logger.h" beforeDir="false" afterPath="$PROJECT_DIR$/simulations/spins_logger.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulations/zero_field.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/simulations/analysis.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulations/zero_field.h" beforeDir="false" afterPath="$PROJECT_DIR$/simulations/analysis.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -252,7 +233,7 @@
       <workItem from="1646999581969" duration="20403000" />
       <workItem from="1647124406358" duration="84262000" />
       <workItem from="1648399175608" duration="5755000" />
-      <workItem from="1648487600850" duration="49017000" />
+      <workItem from="1648487600850" duration="53428000" />
     </task>
     <servers />
   </component>
