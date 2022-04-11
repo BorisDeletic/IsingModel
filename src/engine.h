@@ -22,9 +22,9 @@ public:
 
     bool monteCarlo = false;
 private:
-    void calculateNewSpinsMC(vector<vector<int>>& newSpins);
-    void calculateNewSpinsLA(vector<vector<int>>& newSpins);
-    int flipSpin(int s0, vector<int> neighbours);
+    void calculateNewSpinsMC(vector<vector<signed char>>& newSpins);
+    void calculateNewSpinsLA(vector<vector<signed char>>& newSpins);
+    signed char flipSpin(signed char s0, vector<signed char> neighbours);
 
     int n;
     float T;

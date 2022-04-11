@@ -45,6 +45,8 @@ def openData():
 
         n, T, H, rand, t_eq, t_decor, meanMag, spinVar, heatCap, energyVar = list(map(conv, (line1.split(",")[:-1])))
         n = int(n)
+        if n != 200:
+            continue
 
         mags = list(map(conv, line2.split(",")[:-1]))
         energys = list(map(conv, line3.split(",")[:-1]))
@@ -243,8 +245,8 @@ def plotMagVsRandmag(df, mags, randmags, n, T):
     dfn_r = df.loc[(df["n"] == n) & (df["T"] == T) & df["R"] == 1]
     dfn_u = df.loc[(df["n"] == n) & (df["T"] == T) & df["R"] == 0]
 
-    t_eq_r = dfn_r["t_eq"].iloc[-1]
-    mean_mag_r = dfn_r["mag"].iloc[-1] / n**2
+  #  t_eq_r = dfn_r["t_eq"].iloc[-1]
+ #   mean_mag_r = dfn_r["mag"].iloc[-1] / n**2
 
     t_eq_u = dfn_u["t_eq"].iloc[-1]
     mean_mag_u = dfn_u["mag"].iloc[-1] / n**2
@@ -253,10 +255,10 @@ def plotMagVsRandmag(df, mags, randmags, n, T):
     ax.axvline(x=t_eq_u, color=c, linestyle = '--')
     ax.axhline(y=mean_mag_u, color=c, linestyle = '--')
 
-    c=next(ax._get_lines.prop_cycler)['color']
-    ax.plot(randmags[(n, T)] / n**2, label = "Random initial lattice, Equilibrium time = {}".format(t_eq_r), color = c)
-    ax.axvline(x=t_eq_r, color=c, linestyle = '--')
-    ax.axhline(y=mean_mag_r, color=c, linestyle = '--')
+  #  c=next(ax._get_lines.prop_cycler)['color']
+ #   ax.plot(randmags[(n, T)] / n**2, label = "Random initial lattice, Equilibrium time = {}".format(t_eq_r), color = c)
+#    ax.axvline(x=t_eq_r, color=c, linestyle = '--')
+ #   ax.axhline(y=mean_mag_r, color=c, linestyle = '--')
 
 
     ax.set_title("Magnetisation vs Time, n = {}, T = {}".format(n, T))
@@ -324,26 +326,25 @@ df_mean = getMeansWithError(df_raw)
 df_Tc = getCriticalTemperatures(Tcs, df_mean)
 
 
-# plotMagVsTemp(df_mean)
-# plotSusceptibility(df_mean)
-# #
-# plotDecorrelationTimeVsTemperature(df_mean)
-# #
-# plotHeatCapacityVsTemperature(df_mean)
-# plotEnergyVarianceVsTemperature(df_mean)
-# #
-# plotCriticalTemperatureVsN(df_Tc)
-#
-print(Ts)
-showTs = [2.15]
-#showTs = [Ts[i] for i in range(1, len(Ts), len(Ts) // 3)]
+plotMagVsTemp(df_mean)
+plotSusceptibility(df_mean)
+
+plotDecorrelationTimeVsTemperature(df_mean)
+
+plotHeatCapacityVsTemperature(df_mean)
+plotEnergyVarianceVsTemperature(df_mean)
+
+plotCriticalTemperatureVsN(df_Tc)
+
+
+showTs = [Ts[i] for i in range(3, len(Ts), len(Ts) // 4)]
 #showTs.append(Ts[-1])
 #howTs = [8,9]
 #
+#plotMagVsRandmag(df_raw, all_mags, randmags, ns[-1], 2.15)
 #plotMagVsTime(df_raw, all_mags, ns[-1], showTs)
-plotMagVsRandmag(df_raw, all_mags, randmags, ns[-1], 2.15)
-# plotCorrelationVsTime(df_raw, all_correlations, ns[-1], showTs)
-#plotEnergyVsTime(df_raw, all_energys, ns[-1], showTs)
+plotCorrelationVsTime(df_raw, all_correlations, ns[-1], showTs)
+plotEnergyVsTime(df_raw, all_energys, ns[-1], showTs)
 
 
 plt.show()

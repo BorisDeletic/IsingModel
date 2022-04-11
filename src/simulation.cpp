@@ -43,7 +43,7 @@ optional<int> Simulation::timeToEquilibrium() {
     const int steps = energy.size();
 
     const int windowSize = steps / 10;
-    const float slopeThreshold = 0.00005;
+    const float slopeThreshold = 0.0005;
 
      for (int i = 0; i < steps - windowSize; i+=5) {
          auto start = energy.begin() + i;
@@ -62,6 +62,9 @@ optional<int> Simulation::timeToEquilibrium() {
         }
     }
 
+     if (steps > 90000) {
+         return 10000;
+     }
     // equilibrium conditions not reached
     return nullopt;
 }

@@ -23,7 +23,7 @@ int main()
 //    for (float H : Hs) {
 //        runFieldSimulations(H);
 //    }
-   // measureSpeed();
+    measureSpeed();
 }
 
 
@@ -52,25 +52,28 @@ void measureSpeed()
     ofstream file;
     file.open(R"(..\results\speed.csv)");
 
-    // should take approx 6h
+    // should take approx 12h
     vector<int> Ns = {10, 20, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000};
     int steps = 10000;
 
 
-    for (int n : Ns) {
-        auto t1 = std::chrono::high_resolution_clock::now();
+    for (int montecarlo = 0; montecarlo < 2; montecarlo++) {
+        for (int n : Ns) {
+            auto t1 = std::chrono::high_resolution_clock::now();
 
-        Simulation sim(n);
-        sim.run(steps);
+            Simulation sim(n);
+            sim.engine.monteCarlo = !(montecarlo == 0);
+            sim.run(steps);
 
-        auto t2 = std::chrono::high_resolution_clock::now();
+            auto t2 = std::chrono::high_resolution_clock::now();
 
-        /* Getting number of milliseconds as an integer. */
-        auto time = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1);
+            /* Getting number of milliseconds as an integer. */
+            auto time = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1);
 
-        file << n << "," << steps << "," << time.count() << endl;
+            file << n << "," << montecarlo << "," << steps << "," << time.count() << endl;
 
-        cout << sim <<endl;
+            cout << sim << endl;
+        }
     }
 
     file.close();

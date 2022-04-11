@@ -5,7 +5,7 @@
 Lattice::Lattice(int n)
     :
     n(n),
-    spins(vector<vector<int>>(n, vector<int>(n, 1)))
+    spins(vector<vector<signed char>>(n, vector<signed char>(n, 1)))
 {
 
 }
@@ -16,7 +16,7 @@ void Lattice::randomize() {
     {
         for (int j = 0; j < n; j++)
         {
-            int spin = rand() % 2 == 0 ? 1 : -1;
+            signed char spin = rand() % 2 == 0 ? 1 : -1;
             spins[i][j] = spin;
         }
     }
@@ -43,13 +43,13 @@ double Lattice::energy(float H) {
 
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
-            int s0 = spins[i][j];
+            signed char s0 = spins[i][j];
 
             // get neighbour spins and use wrap-around boundary conditions
-            int s1 = spins[i - 1 >= 0 ? i - 1 : n - 1][j];
-            int s2 = spins[i + 1 < n ? i + 1 : 0][j];
-            int s3 = spins[i][j - 1 >= 0 ? j - 1 : n - 1];
-            int s4 = spins[i][j + 1 < n ? j + 1 : 0];
+            signed char s1 = spins[i - 1 >= 0 ? i - 1 : n - 1][j];
+            signed char s2 = spins[i + 1 < n ? i + 1 : 0][j];
+            signed char s3 = spins[i][j - 1 >= 0 ? j - 1 : n - 1];
+            signed char s4 = spins[i][j + 1 < n ? j + 1 : 0];
 
             double neighbours = (s0 * s1) + (s0 * s2) + (s0 * s3) + (s0 * s4);
             double Hterm = H * s0;

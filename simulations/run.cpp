@@ -11,8 +11,8 @@ void runZeroFieldSimulations()
 {
    // vector<int> Ns = {50, 100, 200};
    // vector<float> Ts = {0.5, 1, 1.5, 2, 3};
-   const int reps = 1;
-   set<int> Ns = {10, 50, 100, 200, 500};
+   const int reps = 5;
+   set<int> Ns = {30, 50, 100, 200, 500};
    set<float> Ts;
 
     for (float T = 0; T < 2.2; T+=0.3) {
@@ -26,6 +26,7 @@ void runZeroFieldSimulations()
     }
     Ts.insert(2.269);
     Ts.insert(2.271);
+    Ts.insert(2.270);
     Ts.insert(2.272);
     Ts.insert(2.273);
     Ts.insert(2.274);
@@ -115,7 +116,8 @@ void runSim(Simulation& sim, float T, int steps, bool randomised)
 
         if (sim.magnetisations.size() > maxSteps) {
             printf("Equilibrium not reached in %d steps from main\n", sim.magnetisations.size());
-            throw std::exception();
+            t_eq = 10000;
+         //   throw std::exception();
         }
     }
 

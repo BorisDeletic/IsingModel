@@ -18,7 +18,7 @@ public:
     double magnetisation();
     double energy(float H);
 
-    vector<vector<int>> spins;
+    vector<vector<signed char>> spins;
 
     friend ostream& operator << (ostream &o, const Lattice &l);
 
