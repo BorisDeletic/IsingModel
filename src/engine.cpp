@@ -22,18 +22,13 @@ Engine::Engine(int n)
 }
 
 
-Lattice Engine::timeStep(Lattice& old)
+void Engine::timeStep(Lattice& lattice)
 {
-    Lattice newLattice(n);
-    newLattice.spins = old.spins;
-
     if (monteCarlo) {
-        calculateNewSpinsMC(newLattice.spins);
+        calculateNewSpinsMC(lattice.spins);
     } else {
-        calculateNewSpinsLA(newLattice.spins);
+        calculateNewSpinsLA(lattice.spins);
     }
-
-    return newLattice;
 }
 
 
@@ -55,6 +50,7 @@ void Engine::calculateNewSpinsLA(vector<vector<signed char>> &newSpins)
     }
 }
 
+// pick spins to flip randomly
 void Engine::calculateNewSpinsMC(vector<vector<signed char>> &newSpins)
 {
 
@@ -107,16 +103,21 @@ signed char Engine::flipSpin(signed char s0, vector<signed char> neighbours) {
 }
 
 
-double Engine::fluctuations(vector<double>& quantity, int t0)
+double Engine::fluctuations(vector<double>& quantity_raw, int t0)
 {
+    vector<double> quantity;
+    for (double q : quantity_raw) {
+        quantity.push_back(fabs(q));
+    }
+
     const int len = quantity.size() - t0;
 
-    double meanEnergy = reduce(quantity.begin() + t0, quantity.end()) / len;
+    double mean = reduce(quantity.begin() + t0, quantity.end()) / len;
 
     vector<double> rmsQuantity;
 
     for (int i = t0; i < quantity.size(); i++) {
-        double rms = pow(quantity[i] - meanEnergy, 2);
+        double rms = pow(quantity[i] - mean, 2);
         rmsQuantity.push_back(rms);
     }
 

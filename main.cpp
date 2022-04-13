@@ -23,7 +23,7 @@ int main()
 //    for (float H : Hs) {
 //        runFieldSimulations(H);
 //    }
-    measureSpeed();
+ //   measureSpeed();
 }
 
 

@@ -27,9 +27,7 @@ void Simulation::run(int timeSteps)
         magnetisations.push_back(lattice.magnetisation());
         energy.push_back(lattice.energy(getHField()));
 
-        Lattice nextLattice = engine.timeStep(lattice);
-
-        lattice = nextLattice;
+        engine.timeStep(lattice);
     }
 }
 
@@ -40,12 +38,13 @@ optional<int> Simulation::timeToEquilibrium() {
  * We consider energy stabilised when the line of best fit is flat.
  * Only looking at the energy in a window (1/10th of the total time).
  */
+  //  return energy.size()/10;
     const int steps = energy.size();
 
     const int windowSize = steps / 10;
     const float slopeThreshold = 0.0005;
 
-     for (int i = 0; i < steps - windowSize; i+=5) {
+     for (int i = windowSize; i < steps - windowSize; i+=5) {
          auto start = energy.begin() + i;
          auto end = energy.begin() + i + windowSize;
 
@@ -70,7 +69,8 @@ optional<int> Simulation::timeToEquilibrium() {
 }
 
 
-double gradientLineBestFit(const std::vector<double> &pts) {
+double gradientLineBestFit(const vector<double> &pts)
+{
     int nPoints = pts.size();
     if( nPoints < 2 ) {
         return 0;
@@ -86,7 +86,7 @@ double gradientLineBestFit(const std::vector<double> &pts) {
     double yMean = sumY / nPoints;
     double denominator = sumX2 - sumX * xMean;
     // You can tune the eps (1e-7) below for your specific task
-    if( std::fabs(denominator) < 1e-7 ) {
+    if( fabs(denominator) < 1e-7 ) {
         // Fail: it seems a vertical line
         return 1e7;
     }

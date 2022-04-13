@@ -12,7 +12,7 @@ class Engine {
 public:
     Engine(int n);
 
-    Lattice timeStep(Lattice& old);
+    void timeStep(Lattice& lattice);
     double fluctuations(vector<double>& quantity, int t0);
 
     void setTemperature(float temperature) {T = temperature; };

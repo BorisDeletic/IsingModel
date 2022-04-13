@@ -9,31 +9,27 @@
 
 void runZeroFieldSimulations()
 {
-   // vector<int> Ns = {50, 100, 200};
-   // vector<float> Ts = {0.5, 1, 1.5, 2, 3};
-   const int reps = 5;
-   set<int> Ns = {30, 50, 100, 200, 500};
+   const int reps = 2;
+   set<int> Ns = {5, 10, 20, 30, 40};
    set<float> Ts;
 
-    for (float T = 0; T < 2.2; T+=0.3) {
+    for (float T = 0; T < 5; T+=0.3) {
         Ts.insert(T);
     }
-    for (float T = 2.2; T < 2.4; T += 0.025) {
+    for (float T = 2.6; T < 3.01; T+=0.1) {
         Ts.insert(T);
     }
-    for (float T = 2.4; T < 5; T+=0.3) {
+    for (float T = 2.2; T < 2.6; T += 0.025) {
         Ts.insert(T);
     }
-    Ts.insert(2.269);
-    Ts.insert(2.271);
-    Ts.insert(2.270);
-    Ts.insert(2.272);
-    Ts.insert(2.273);
-    Ts.insert(2.274);
-    Ts.insert(2.276);
-    Ts.insert(2.277);
-    Ts.insert(2.278);
-    Ts.insert(2.279);
+
+// for large n
+//    for (float T = 2.26; T < 2.32; T += 0.0025) {
+//        Ts.insert(T);
+//    }
+//    for (float T = 2.0; T < 3.101; T += 0.1) {
+//        Ts.insert(T);
+//    }
 
     for (int i = 0; i < reps; i++) {
         for (int n: Ns) {
@@ -53,8 +49,6 @@ void runZeroFieldSimulations()
 
 void runFieldSimulations(float H)
 {
-    // vector<int> Ns = {50, 100, 200};
-    // vector<float> Ts = {0.5, 1, 1.5, 2, 3};
     const int reps = 5;
     int n = 100;
     set<float> Ts;

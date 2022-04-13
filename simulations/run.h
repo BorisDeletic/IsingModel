@@ -16,7 +16,7 @@ void runSpinsWithHField(float T);
 void runSim(Simulation& sim, float T, int steps, bool randomised);
 
 const int maxSteps = 100000;
-const int initSteps = 100;
+const int initSteps = 5000;
 
 
 #endif //ISINGMODEL_RUN_H

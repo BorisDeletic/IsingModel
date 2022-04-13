@@ -42,7 +42,7 @@ public:
 
     // DECORRELATIONS //
     static optional<int> decorrelationTime(vector<double>& autoCorrelation);
-    static vector<double> autoCorrelations(vector<double>& mags, int t_eq);
+    static vector<double> autoCorrelations(vector<double>& mags, int t0);
     static double autoCovariance(vector<double>& mags, int t_start, int tau);
 
 

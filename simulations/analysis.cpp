@@ -44,12 +44,15 @@ void Analysis::calculateResults(Simulation &sim) {
         throw std::exception();
     }
 
-    // find mean of |M| instead of M
-    vector<double> absMags;
-    for (double mag : sim.magnetisations) {
-        absMags.push_back(abs(mag));
-    }
+    int len = sim.magnetisations.size();
 
+    // find mean of |M| instead of M
+    double meanMag = 0;
+    vector<double> absMags;
+    for (int i = *t_eq; i < len; i++) {
+        meanMag += fabs(sim.magnetisations[i]);
+    }
+    meanMag /= len - *t_eq;
 
     results.n = sim.n;
     results.T = T;
@@ -59,7 +62,7 @@ void Analysis::calculateResults(Simulation &sim) {
     results.equilibriumTime = *t_eq;
     results.decorrelationTime = *decorTime;
 
-    results.meanMagnetisation = reduce(absMags.begin() + *t_eq, absMags.end()) / (absMags.size() - *t_eq);
+    results.meanMagnetisation = meanMag;
     results.spinVariance = sim.engine.fluctuations(sim.magnetisations, *t_eq);
 
     results.energyVariance = sim.engine.fluctuations(sim.energy, *t_eq);
@@ -73,19 +76,19 @@ void Analysis::calculateResults(Simulation &sim) {
 
 
 // DECORRELATIONS //
-vector<double> Analysis::autoCorrelations(vector<double>& mags, int t_eq)
+vector<double> Analysis::autoCorrelations(vector<double>& mags, int t0)
 {
     float correlationCutoff = 0.2;
     // the maximum offset we can calculate correlation for is 20% of total time
 
-    double autoCov0 = autoCovariance(mags, t_eq, 0);
+    double autoCov0 = autoCovariance(mags, t0, 0);
     vector<double> autoCors;
 
-    float maxTau = (mags.size() - t_eq) * correlationCutoff;
+    float maxTau = (mags.size() - t0) * correlationCutoff;
 
     for (int tau = 0; tau < maxTau; tau++)
     {
-        double cor = autoCovariance(mags, t_eq, tau) / autoCov0;
+        double cor = autoCovariance(mags, t0, tau) / autoCov0;
 
         cor = autoCov0 == 0 ? 0 : cor;
         autoCors.push_back(cor);
