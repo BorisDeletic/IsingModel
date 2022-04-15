@@ -3,7 +3,6 @@
 #include <chrono>
 #include "simulations/hysteresis.h"
 #include "simulations/run.h"
-#include "analysis.h"
 
 using namespace std;
 
@@ -17,7 +16,7 @@ int main()
     runZeroFieldSimulations();
 
     //runSpinsWithCooling();
-   // runSpinsWithHField(3.0);
+ //   runSpinsWithHField(2.1);
 
 //    vector<float> Hs = {0.1, 0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0};
 //    for (float H : Hs) {

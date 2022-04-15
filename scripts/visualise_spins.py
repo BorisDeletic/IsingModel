@@ -87,6 +87,9 @@ ax1.set_ylabel("y")
 ax2.set_xlabel("Time")
 ax2.set_ylabel("Applied Field (H) / Magnetisation (M)")
 ax2.set_title("Applied Field and Magnetisation of Lattice vs Time")
+ax2.grid()
+ax2.axhline(0, color="black")
+ax2.axvline(0, color="black")
 ax2.legend(loc ="lower right")
 
 xdata, ydata1, ydata2 = [], [], []
@@ -99,7 +102,7 @@ def animate(i):
     line2.set_data(xdata, ydata2)
 
     cax.set_array(spins[i].flatten())
-    ax1.set_title("Lattice spins above critical temperature\nTime = {}, Temperature = {}".format(i, Ts[i]))
+    ax1.set_title("Lattice spins below critical temperature\nTime = {}, Temperature = {}".format(i, Ts[i]))
 
 anim = animation.FuncAnimation(fig, animate, interval=100, frames=steps-1, repeat=False)
 anim.save('spins_through_hysteresis_n{}.gif'.format(n))

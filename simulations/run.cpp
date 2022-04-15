@@ -9,22 +9,23 @@
 
 void runZeroFieldSimulations()
 {
-   const int reps = 2;
-   set<int> Ns = {5, 10, 20, 30, 40};
+   const int reps = 10;
+   set<int> Ns = {10, 20, 30, 50, 100, 200};
    set<float> Ts;
 
     for (float T = 0; T < 5; T+=0.3) {
         Ts.insert(T);
     }
-    for (float T = 2.6; T < 3.01; T+=0.1) {
-        Ts.insert(T);
-    }
-    for (float T = 2.2; T < 2.6; T += 0.025) {
+    for (float T = 2.25; T < 3.3; T+=0.05) {
         Ts.insert(T);
     }
 
 // for large n
-//    for (float T = 2.26; T < 2.32; T += 0.0025) {
+  //  Ts.insert(2.2692);
+  //  Ts.insert(2.2695);
+   // Ts.insert(2.271);
+  //  Ts.insert(2.269);
+//    for (float T = 2.269; T < 2.274; T += 0.001) {
 //        Ts.insert(T);
 //    }
 //    for (float T = 2.0; T < 3.101; T += 0.1) {
@@ -83,7 +84,7 @@ void runSim(Simulation& sim, float T, int steps, bool randomised)
     if (randomised) sim.randomize();
     sim.setTemperature(T);
 
-    int minAverageFactor = 10;
+    int decorTimeFactor = 10;
     int minSteps = maxSteps;
     optional<int> t_eq;
     optional<int> decorTime;
@@ -100,8 +101,7 @@ void runSim(Simulation& sim, float T, int steps, bool randomised)
             decorTime = Analysis::decorrelationTime(correlations);
 
             if (decorTime) {
-                int longerEqTime = *decorTime > *t_eq ? *decorTime : *t_eq;
-                minSteps = longerEqTime * minAverageFactor;
+                minSteps = *decorTime * decorTimeFactor;
                 minSteps = minSteps < maxSteps ? minSteps : maxSteps; // cap min steps at the maximum allowed
             }
         }
@@ -110,8 +110,7 @@ void runSim(Simulation& sim, float T, int steps, bool randomised)
 
         if (sim.magnetisations.size() > maxSteps) {
             printf("Equilibrium not reached in %d steps from main\n", sim.magnetisations.size());
-            t_eq = 10000;
-         //   throw std::exception();
+            throw std::exception();
         }
     }
 
@@ -142,7 +141,6 @@ void runSpinsWithCooling()
         for (int i = 0; i < steps; i++) {
             sim.run(1);
 
-            logger.logState(sim);
             logger.logSpins(sim);
         }
     }
@@ -172,7 +170,7 @@ void runSpinsWithHField(float T)
         sim.setHField(H);
         for (int i = 0; i < steps; i++) {
             sim.run(1);
-            logger.logState(sim);
+
             logger.logSpins(sim);
         }
 

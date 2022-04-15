@@ -11,7 +11,6 @@
 class SpinLogger {
 public:
     void logSpins(Simulation& sim);
-    void logState(Simulation& sim);
 
     SpinLogger(int n, int steps);
 

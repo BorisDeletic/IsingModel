@@ -16,17 +16,29 @@
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/IsingModel.dir/main.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/IsingModel.dir/main.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/IsingModel.dir/src/engine.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/IsingModel.dir/src/engine.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/IsingModel.dir/src/lattice.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/IsingModel.dir/src/lattice.cpp.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/IsingModel.dir/src/simulation.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/IsingModel.dir/src/simulation.cpp.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/IsingModel.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/IsingModel.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/convergence/magvstime_3T.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/convergence/random_vs_uniform.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hysteresis/loop_n100_T1.5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hysteresis/loop_n100_T2.1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hysteresis/loop_n100_T2.2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hysteresis/loop_n100_T2.3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hysteresis/loop_n100_T2.6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hysteresis/loops_overlayed.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hysteresis/spins_hysteresis_above_tc_n500.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hysteresis/spins_hysteresis_below_tc_n500.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/spins_through_cooling_n500.gif" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/critical_temps.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/critical_temps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulations/analysis.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/simulations/analysis.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/visualise_spins.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/visualise_spins.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/simulations/run.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/simulations/run.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/simulations/run.h" beforeDir="false" afterPath="$PROJECT_DIR$/simulations/run.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulations/spins_logger.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/simulations/spins_logger.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulations/spins_logger.h" beforeDir="false" afterPath="$PROJECT_DIR$/simulations/spins_logger.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lattice.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/lattice.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/simulation.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/simulation.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -96,11 +108,6 @@
   </component>
   <component name="RunManager" selected="Python.critical_temps">
     <configuration name="IsingModel" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="IsingModel" TARGET_NAME="IsingModel" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="IsingModel" RUN_TARGET_NAME="IsingModel">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -242,7 +249,9 @@
       <workItem from="1648399175608" duration="5755000" />
       <workItem from="1648487600850" duration="55945000" />
       <workItem from="1649349745110" duration="8417000" />
-      <workItem from="1649682620824" duration="44149000" />
+      <workItem from="1649682620824" duration="53305000" />
+      <workItem from="1649927800550" duration="8040000" />
+      <workItem from="1649944310877" duration="20036000" />
     </task>
     <servers />
   </component>

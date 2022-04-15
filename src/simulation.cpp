@@ -38,7 +38,6 @@ optional<int> Simulation::timeToEquilibrium() {
  * We consider energy stabilised when the line of best fit is flat.
  * Only looking at the energy in a window (1/10th of the total time).
  */
-  //  return energy.size()/10;
     const int steps = energy.size();
 
     const int windowSize = steps / 10;
@@ -61,9 +60,6 @@ optional<int> Simulation::timeToEquilibrium() {
         }
     }
 
-     if (steps > 90000) {
-         return 10000;
-     }
     // equilibrium conditions not reached
     return nullopt;
 }

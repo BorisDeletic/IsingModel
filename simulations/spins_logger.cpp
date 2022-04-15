@@ -16,8 +16,10 @@ SpinLogger::SpinLogger(int n, int steps)
 }
 
 
-void SpinLogger::logState(Simulation &sim)
-{
+
+
+void SpinLogger::logSpins(Simulation &sim) {
+    int n = sim.lattice.spins.size();
     float T = sim.getTemperature();
     float H = sim.getHField();
     double mag = sim.magnetisations[sim.magnetisations.size() - 1];
@@ -27,19 +29,9 @@ void SpinLogger::logState(Simulation &sim)
 
     myfile << T << "," << H << "," << mag << endl;
 
-    myfile.close();
-}
-
-
-
-void SpinLogger::logSpins(Simulation &sim) {
-    int n = sim.lattice.spins.size();
-    ofstream myfile;
-    myfile.open(fname, fstream::app);
-
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
-            myfile << sim.lattice.spins[i][j] << ",";
+            myfile << (int)sim.lattice.spins[i][j] << ",";
         }
     }
     myfile << endl;

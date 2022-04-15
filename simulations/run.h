@@ -15,7 +15,7 @@ void runSpinsWithHField(float T);
 
 void runSim(Simulation& sim, float T, int steps, bool randomised);
 
-const int maxSteps = 100000;
+const int maxSteps = 200000;
 const int initSteps = 5000;
 
 

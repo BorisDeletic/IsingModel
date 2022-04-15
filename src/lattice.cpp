@@ -66,7 +66,7 @@ double Lattice::energy(float H) {
 ostream &operator<<(ostream &o, const Lattice &l) {
     for (int i = 0; i < l.spins.size(); i++) {
         for (int j = 0; j < l.spins.size(); j++) {
-            o << l.spins[i][j] << "\t";
+            o << (int)l.spins[i][j] << "\t";
         }
         o << endl;
     }
