@@ -1,8 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
-import pandas as pd
-import math
 
 from matplotlib import animation
 
@@ -13,8 +11,6 @@ def conv(s):
     except ValueError:
         pass
     return s
-
-
 
 
 f = open("../results/spins.csv")
@@ -28,7 +24,6 @@ spins = np.empty((steps, n, n))
 mags = np.empty(steps)
 Ts = np.empty(steps)
 Hs = np.empty(steps)
-#print(spins[0])
 
 while True:
     line1 = f.readline()
@@ -50,22 +45,6 @@ while True:
 f.close()
 
 mags /= n**2
-
-
-# fig, ax = plt.subplots()
-# time_text = ax.text(0.05, 0.95,'',horizontalalignment='left',verticalalignment='top', transform=ax.transAxes)
-#
-# ns = np.linspace(0, n, n)
-# cax = ax.pcolormesh(ns, ns, spins[0], vmin=-1, vmax=1, cmap=cm.gray)
-#
-# def animate(i):
-#     cax.set_array(spins[i].flatten())
-#
-#
-#     ax.set_title("time step = {}, temperature = {}".format(i, Ts[i]))
-#
-# anim = animation.FuncAnimation(fig, animate, interval=100, frames=steps-1)
-# anim.save('spins_through_cooling_n{}.gif'.format(n))
 
 
 ns = np.linspace(0, n, n)

@@ -44,7 +44,6 @@ fig, ax = plt.subplots()
 ax.axhline(0, color='gray')
 ax.axvline(0, color='gray')
 
-#for T in df["T"].unique():
 for T in [2.1, 2.3, 2.6]:
     dfn = df.loc[df["T"]==T]
 

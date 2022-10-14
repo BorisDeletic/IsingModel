@@ -45,11 +45,6 @@ def openData():
 
         n, T, H, rand, t_eq, t_decor, meanMag, spinVar, heatCap, energyVar = list(map(conv, (line1.split(",")[:-1])))
         n = int(n)
-        # if n == 20:
-        #     continue
-        if n == 40 or n==5:
-            continue
-        #
 
         data.append({
             "n": n,
@@ -64,8 +59,7 @@ def openData():
             "energyVar": energyVar
         })
 
-       # if (n, T) not in all_mags:
-        if False:
+        if (n, T) not in all_mags:
             mags = list(map(conv, line2.split(",")[:-1]))
             energys = list(map(conv, line3.split(",")[:-1]))
             correlations = list(map(conv, line4.split(",")[:-1]))
@@ -90,7 +84,6 @@ def openData():
                 Tcs[n] = [Tc]
 
         lastT = T
-        ######
 
     f.close()
 
@@ -133,14 +126,6 @@ def getCriticalTemperatures(Tcs, df_mean):
     error_Tc = []
 
     for n, Ts in Tcs.items():
-        if n == 10:
-            Ts = [2.5, 2.5, 2.51, 2.49, 2.49, 2.5]
-        if n == 20:
-            Ts = [2.4, 2.4, 2.4, 2.38, 2.38, 2.38, 2.38, 2.38, 2.38]
-        if n == 30:
-            Ts = [2.33, 2.33, 2.33, 2.33, 2.35]
-        if n ==400:
-            Ts=[2.2725, 2.269, 2.269, 2.269, 2.269, 2.269, 2.269]
 
         ns.append(n)
         error_Tc.append(np.std(Ts))
@@ -148,7 +133,6 @@ def getCriticalTemperatures(Tcs, df_mean):
         dfn = df_mean.loc[df_mean["n"] == n]
         Tc = dfn.loc[dfn["mean_susceptibility"].idxmax()]["T"]
         mean_Tc.append(Tc)
-
 
     res["n"] = ns
     res["mean_Tc"] = mean_Tc
@@ -163,12 +147,11 @@ def plotMagVsTemp(mean_mag):
     fig, ax = plt.subplots()
     ax.axvline(2.269, color="red", linestyle='--', label = "Analytic Tc")
     ns = [10, 50, 200]
+
     for n in ns:
         dfn = mean_mag.loc[mean_mag["n"]==n]
         dfn["mean_mag"] = dfn["mean_mag"] / n**2
         dfn["std_mag"] = dfn["std_mag"] / n**2
-
-        reps = dfn["reps"].min() #use min value to display
 
         ax.errorbar(dfn["T"], dfn["mean_mag"], yerr = dfn["std_mag"], label="N = {}".format(n), linestyle='dashed', marker='x')
 
@@ -183,17 +166,14 @@ def plotMagVsTemp(mean_mag):
 def plotSusceptibility(mean_mag):
     fig, ax = plt.subplots()
     fig1, ax1 = plt.subplots()
-    # ns = [20]
-    lns = [400]
-    for n in lns:
+
+    for n in ns:
         dfn = mean_mag.loc[mean_mag["n"]==n]
         dfn["mean_susceptibility"] = dfn["mean_susceptibility"] / n**2
 
         ax.plot(dfn["T"], dfn["mean_susceptibility"], label="N = {}".format(n), linestyle='dashed', marker='x')
 
         ax1.plot(np.log(dfn["T"]), np.log(dfn["mean_susceptibility"]), label = "n = {}".format(n))
-       # Tc = getCriticalTemperature(dfn)
-     #   ax.axvline(x = Tc)
 
     ax.grid()
     ax.set_xlabel("Temperature")
@@ -221,20 +201,16 @@ def plotDecorrelationTimeVsN(df, df_Tc):
     maxDecorTimes = []
     decorTimeErrs = []
 
-    ns_use = ns[:6]
-
-    for n in ns_use:
+    for n in ns:
         dfn = df.loc[(df["n"]==n)].sort_values("T")
         Tc = df_Tc.loc[df_Tc["n"]==n]["mean_Tc"].mean()
         criticalDecorTime = dfn.loc[dfn["T"] == Tc]["mean_t_decor"].mean()
-        #criticalDecorTime = dfn.loc[dfn["T"] == 2.27]["mean_t_decor"].mean()
-        #criticalDecorTime = max(dfn["mean_t_decor"])
 
         decorTimeErr = dfn.loc[dfn["T"] == Tc]["std_t_decor"].mean()
         maxDecorTimes.append(criticalDecorTime)
         decorTimeErrs.append(decorTimeErr / criticalDecorTime)
 
-    x = np.log(ns_use)
+    x = np.log(ns)
     y = np.log(maxDecorTimes).flatten()
 
     slope, intercept = np.polyfit(x, y, 1)
@@ -243,7 +219,6 @@ def plotDecorrelationTimeVsN(df, df_Tc):
 
     ax.plot(np.unique(x), np.poly1d(np.polyfit(x, y, 1))(np.unique(x)), color = 'k', linestyle = '--', label = "Line of best fit, slope = {:.2f}, error = {:.2f}".format(slope, slope_err))
 
-  #  ax.scatter(x, y, label="Critical decorrelation time", linestyle='dashed', marker='o')
     ax.errorbar(x, y, yerr=decorTimeErrs, fmt='o', label="Critical decorrelation time", linestyle='', marker='o')
 
     ax.set_title("Log decorrelation Time vs Log lattice size")
@@ -258,7 +233,9 @@ def plotHeatCapacityVsTemperature(df):
     Tc = 2.269
     x = np.linspace(0, 5, 6000)
     y = -2.1*np.log(abs(Tc -x))
+
     ax.plot(x, y, linestyle = "--", label="Analytical")
+
     show_ns = [10, 200]
     for n in show_ns:
         dfn = df.loc[(df["n"]==n)].sort_values("T")
@@ -285,11 +262,8 @@ def plotEnergyVarianceVsTemperature(df):
     ax.legend(loc="upper left")
 
 
-
 def plotMagVsTime(df, mags, n, Ts):
     fig, (ax, ax2) = plt.subplots(2)
-
-    len = 2000
 
     for T in Ts:
         c=next(ax._get_lines.prop_cycler)['color']
@@ -300,7 +274,6 @@ def plotMagVsTime(df, mags, n, Ts):
         mean_mag = dfn["mag"].iloc[-1] / n**2
 
         norm_mags = list(map(lambda x: x / n**2, mags[(n, T)]))
-        norm_mags = norm_mags[:len]
 
         ax.plot(norm_mags,  label = "Temperature = {}".format(T, t_eq), color = c)
 
@@ -311,7 +284,6 @@ def plotMagVsTime(df, mags, n, Ts):
     ax.set_ylabel("Magnetisation (M)")
     ax.legend(loc="upper right")
     ax.grid()
-
 
 
 def plotMagVsRandmag(df, mags, randmags, n, T):
@@ -394,7 +366,6 @@ def plotCriticalTemperatureVsN(df):
     x = 1/df["n"]
 
     (slope, intercept), V = np.polyfit(x, df["mean_Tc"], 1, cov=True)
-    slope_err = np.sqrt(V[0][0])
     int_err = np.sqrt(V[1][1])
 
     ax1.plot(np.unique(x), np.poly1d(np.polyfit(x, df["mean_Tc"], 1))(np.unique(x)), color = 'gray', linestyle = '--', label = "Line of best fit\nIntercept = {:.4f}\u00B1{:.3f}".format(intercept, int_err))
@@ -419,29 +390,23 @@ df_mean = getMeansWithError(df_raw)
 df_Tc = getCriticalTemperatures(Tcs, df_mean)
 
 
-# plotMagVsTemp(df_mean)
-# plotSusceptibility(df_mean)
-#
-# plotDecorrelationTimeVsTemperature(df_mean)
-#
-# plotHeatCapacityVsTemperature(df_mean)
-# plotEnergyVarianceVsTemperature(df_mean)
-#
+plotMagVsTemp(df_mean)
+plotSusceptibility(df_mean)
+
+plotDecorrelationTimeVsTemperature(df_mean)
+
+plotHeatCapacityVsTemperature(df_mean)
+plotEnergyVarianceVsTemperature(df_mean)
+
 plotCriticalTemperatureVsN(df_Tc)
 
-# plotDecorrelationTimeVsN(df_mean, df_Tc)
-#
-#
-# showTs = [Ts[i] for i in range(3, len(Ts), len(Ts) // 4)]
-showTs = [1.2, 2.28, 2.29, 2.5]
-# #showTs.append(Ts[-1])
-# #showTs = [1.2, 2.275, 3.0]
-# #
-# #plotMagVsRandmag(df_raw, all_mags, randmags, ns[-1], 2.15)
-# plotMagVsTime(df_raw, all_mags, 20, showTs)
-# plotCorrelationVsTime(df_raw, all_correlations, 200, showTs)
-# plotEnergyVsTime(df_raw, all_energys, 20, showTs)
-#
-# plotMagAndEnergyVsTime(df_raw, all_energys, all_mags, 20, showTs)
+plotDecorrelationTimeVsN(df_mean, df_Tc)
+
+showTs = [1, 2.15, 3]
+
+plotMagVsRandmag(df_raw, all_mags, randmags, ns[-1], 2.15)
+plotMagVsTime(df_raw, all_mags, ns[-1], showTs)
+plotCorrelationVsTime(df_raw, all_correlations, ns[-1], showTs)
+plotEnergyVsTime(df_raw, all_energys, ns[-1], showTs)
 
 plt.show()

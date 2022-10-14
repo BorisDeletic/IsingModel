@@ -1,0 +1,163 @@
+\ProvidesPackage{sleek-title}[2021/08/06 v1.1.1 Sleek Title]
+
+%%%%%%%%%%%%%%%%
+% Requirements %
+%%%%%%%%%%%%%%%%
+
+\RequirePackage{geometry}
+\RequirePackage{graphicx}
+\RequirePackage[framemethod=TikZ]{mdframed}
+\RequirePackage[nomessages]{fp}
+
+%%%%%%%%%%%%
+% Commands %
+%%%%%%%%%%%%
+
+% Auxiliary commands
+
+\newcommand*{\clearpar}{\unskip\par}
+
+\newcommand*{\countlines}[1]{ % saves the number of lines of #1 in \numlines
+    \setbox0\vbox{
+        \noindent{#1}\par
+        \count@\z@
+        \loop
+        \unskip\unpenalty\unskip\unpenalty\unskip
+        \setbox0\lastbox
+        \ifvoid0
+           \xdef\numlines{\the\count@}
+        \else
+           \advance\count@\@ne
+        \repeat
+    }
+}
+
+% Custom fields
+
+\newif\ifLogo
+\newif\ifInstitute
+\newif\ifFaculty
+\newif\ifDepartment
+\newif\ifSubtitle
+\newif\ifSupervisor
+\newif\ifContext
+
+\newcommand*{\logo}[1]{\gdef\@logo{#1}\Logotrue}
+\newcommand*{\institute}[1]{\gdef\@institute{#1}\Institutetrue}
+\newcommand*{\faculty}[1]{\gdef\@faculty{#1}\Facultytrue}
+\newcommand*{\department}[1]{\gdef\@department{#1}\Departmenttrue}
+\newcommand*{\subtitle}[1]{\gdef\@subtitle{#1}\Subtitletrue}
+\newcommand*{\supervisor}[1]{\gdef\@supervisor{#1}\Supervisortrue}
+\newcommand*{\context}[1]{\gdef\@context{#1}\Contexttrue}
+
+%%%%%%%%%%%%%%
+% Title page %
+%%%%%%%%%%%%%%
+
+\newlength\topheight
+\newlength\logoheight
+\newlength\titleskipabove
+\newlength\titleskipbelow
+
+\renewcommand*{\maketitle}{
+    \calculateheights
+    \newgeometry{margin=2.5cm}
+    \begin{titlepage}
+        \setlength{\parindent}{0pt}
+        \begin{minipage}[t][\topheight]{\textwidth}
+            \begin{center}
+                \ifLogo
+                    \includegraphics[height=\logoheight]{\@logo}
+                \fi
+                \vfill
+                {
+                    \scshape
+                    \ifInstitute
+                        {\LARGE\@institute\unskip\\}
+                    \fi
+                    \ifFaculty
+                        {\Large\@faculty\unskip\\[1ex]}
+                    \fi
+                    \ifDepartment
+                        {\large\@department}
+                    \fi
+                    \clearpar
+                }
+            \end{center}
+        \end{minipage}
+        \begin{minipage}{\textwidth}
+            \vspace{\titleskipabove}
+            \begin{mdframed}[
+                linewidth=2pt,
+                innertopmargin=3ex,
+                innerbottommargin=3ex,
+                leftline=false,
+                rightline=false
+            ]
+                \begin{center}
+                    {\bfseries\huge\@title\clearpar}
+                \end{center}
+            \end{mdframed}
+            \vspace{-0.25cm}
+            \vspace{\titleskipbelow}
+        \end{minipage}
+        \begin{center}
+            \ifSubtitle
+                {\Large\@subtitle\clearpar}
+            \fi
+            \vfill
+            \ifSupervisor
+                \begin{minipage}[t]{0.49\textwidth}
+                    {\large\@author\clearpar}
+                \end{minipage}
+                \begin{minipage}[t]{0.49\textwidth}
+                    \begin{flushright}
+                        {\large\@supervisor\clearpar}
+                    \end{flushright}
+                \end{minipage}
+            \else
+                {\large\@author}
+            \fi
+            \vfill
+            \ifContext
+                {\large\@context\clearpar}
+            \fi
+            {\large\@date\clearpar}
+        \end{center}
+    \end{titlepage}
+    \restoregeometry
+}
+
+%%%%%%%%%%%
+% Options %
+%%%%%%%%%%%
+
+\newcommand*{\calculateheights}{}
+
+\DeclareOption{center}{
+    \renewcommand*{\calculateheights}{
+        \countlines{\bfseries\huge\@title}
+        \FPeval{\topratio}{0.3 - 0.01 * (\numlines - 1)}
+        \FPeval{\skipratio}{\topratio - 0.15}
+        \setlength{\logoheight}{0.15\textheight}
+        \setlength{\topheight}{\topratio\textheight}
+        \setlength{\titleskipabove}{\skipratio\textheight}
+        \setlength{\titleskipbelow}{3ex}
+    }
+}
+
+\DeclareOption{custom}{
+    \renewcommand*{\calculateheights}{
+        \countlines{\bfseries\huge\@title}
+        \setlength{\logoheight}{0.125\textheight}
+        \setlength{\topheight}{0.2\textheight}
+        \setlength{\titleskipabove}{1.5cm}
+        \setlength{\titleskipbelow}{1.5cm}
+    }
+}
+
+\ExecuteOptions{center}
+
+\ProcessOptions\relax
+
+\endinput
