@@ -6,6 +6,6 @@ The Ising Model is a simple statistical model which aims to represent a ferromag
 
 ![Image](https://raw.githubusercontent.com/BorisDeletic/IsingModel/main/report/resources/ising_model.PNG)
 
-The model uses the [Metropolis algorithm](https://en.wikipedia.org/wiki/Metropolis-Hastings_algorithm) to calculate the dynamics of the spin lattice in time. 
+The model uses the [Metropolis algorithm](https://en.wikipedia.org/wiki/Metropolis-Hastings_algorithm) to evolve the dynamics of the spin lattice with time. 
 
 The full report can be viewed in the PDF.
